@@ -20,6 +20,14 @@ module.exports = {
             }});
             return;
           }
+          if(args[0] == `miner`) {
+            message.channel.send({embed: {
+              color:4360181,
+              title:`Eve Miners`,
+              description: message.guild.roles.find(role => role.name == `Miner`).members.map(m=>m.user.tag).join('\n')
+            }});
+            return;
+          }
           if(args[0] == `vc`) {
             message.channel.send({embed: {
               color:4360181,

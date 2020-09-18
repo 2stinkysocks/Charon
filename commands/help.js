@@ -41,6 +41,10 @@ module.exports = {
                   value: `Add someone as a Stealth Bomber (Eve Commander Only)`
                 },
                 {
+                  name: `${config.prefix}miner`,
+                  value: `Add someone as an Eve Miner (Eve Commander Only)`
+                },
+                {
                   name: `${config.prefix}prefix`,
                   value: `Modify the server prefix (Officer only)`
                 }
@@ -70,7 +74,7 @@ module.exports = {
               message.channel.send({embed: {
                 color:4360181,
                 title: "List",
-                description: `Shows the vc, sos, rsvd, void, and fill whitestar lists.\n\nUse **${config.prefix}list (vc, sos, rsvd, void, fill, vc-ws, sos-ws, rsvd-ws, void-ws, bomber)** to check each corresponding list.\n\nYou can also use **${config.prefix}list count** to check how many members are in each list.`
+                description: `Shows the vc, sos, rsvd, void, and fill whitestar lists.\n\nUse **${config.prefix}list (vc, sos, rsvd, void, fill, vc-ws, sos-ws, rsvd-ws, void-ws, bomber, miner)** to check each corresponding list.\n\nYou can also use **${config.prefix}list count** to check how many members are in each list.`
               }})
             break;
             case "ping":
