@@ -102,6 +102,9 @@ client.on(`message`, async message => {
     if(command === "sendembed") {
         client.commands.get('sendembed').execute(message, args);
     }
+    if(command === "miner") {
+        client.commands.get('miner').execute(message, args);
+    }
 
 });
 client.login(process.env.BOT_TOKEN)
