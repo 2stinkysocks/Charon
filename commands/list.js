@@ -20,6 +20,14 @@ module.exports = {
             }});
             return;
           }
+          if(args[0] == `security`) {
+            message.channel.send({embed: {
+              color:4360181,
+              title:`Security`,
+              description: message.guild.roles.find(role => role.name == `Security`).members.map(m=>m.user.tag).join('\n')
+            }});
+            return;
+          }
           if(args[0] == `miner`) {
             message.channel.send({embed: {
               color:4360181,
