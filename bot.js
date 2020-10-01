@@ -105,6 +105,9 @@ client.on(`message`, async message => {
     if(command === "miner") {
         client.commands.get('miner').execute(message, args);
     }
+    if(command === "security") {
+        client.commands.get('security').execute(message, args);
+    }
 
 });
 client.login(process.env.BOT_TOKEN)
