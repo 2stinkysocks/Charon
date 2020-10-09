@@ -1,5 +1,5 @@
 require('dotenv').config()
-var fs = require('fs');
+const fs = require('fs');
 const timestring = require('timestring'); //timestring(str, 'ms') turns 1h30m to ms
 const Discord = require(`discord.js`);
 const client = new Discord.Client();
@@ -8,6 +8,7 @@ const config = require(`./config.json`);
 const croids = require(`./croids.json`);
 const autoresponses = require(`./autoresponses.json`);
 const rsq = require(`./rsq.json`);
+const recurringVoters = require(`./recurringVoters.json`); // -votein sos -r enable, -votein sos -r disable
 
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
@@ -107,6 +108,9 @@ client.on(`message`, async message => {
     }
     if(command === "security") {
         client.commands.get('security').execute(message, args);
+    }
+    if(command === "autovote") {
+        client.commands.get('autovote').execute(message, args, fs, recurringVoters);
     }
 
 });

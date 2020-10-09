@@ -20,7 +20,7 @@ module.exports = {
         if(args[1] == `wildcard`) {
           if(autoresponses[args[2]] != null) return message.channel.send(`That autoresponse already exists!`);
           autoresponses[args[2]] = {response: args.join(" ").slice(args[0].length).trim().slice(args[1].length).trim().slice(args[2].length).trim().split(/ +/g).join(" "), creatorid: message.author.id, wildcard:true};
-          fs.writeFile('../autoresponses.json', JSON.stringify(autoresponses), function (err) {
+          fs.writeFile('./autoresponses.json', JSON.stringify(autoresponses), function (err) {
             if (err) return console.log(err);
           });
           message.channel.send(`Autoresponse **${args[2]}** has been created with wildcard!`);
@@ -28,7 +28,7 @@ module.exports = {
         }
         if(autoresponses[args[1]] != null) return message.channel.send(`That autoresponse already exists!`);
         autoresponses[args[1]] = {response: args.join(" ").slice(args[0].length).trim().slice(args[1].length).trim().split(/ +/g).join(" "), creatorid: message.author.id};
-        fs.writeFile('../autoresponses.json', JSON.stringify(autoresponses), function (err) {
+        fs.writeFile('./autoresponses.json', JSON.stringify(autoresponses), function (err) {
             if (err) return console.log(err);
         });
         message.channel.send(`Autoresponse **${args[1]}** has been created!`)
@@ -38,7 +38,7 @@ module.exports = {
         if(autoresponses[args[1]] == null) return message.channel.send(`That autoresponse doesn't exist!`);
         if(message.author.id != autoresponses[args[1]].creatorid && !message.member.hasPermission(`MANAGE_GUILD`)) return message.channel.send(`Only officers can remove other peoples' autoresponses!`);
         delete autoresponses[args[1]];
-        fs.writeFile('../autoresponses.json', JSON.stringify(autoresponses), function (err) {
+        fs.writeFile('./autoresponses.json', JSON.stringify(autoresponses), function (err) {
             if (err) return console.log(err);
         });
         message.channel.send(`Response deleted.`)

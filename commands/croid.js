@@ -4,7 +4,7 @@ module.exports = {
     async execute(message, args, croids, timestring, fs) {
         if(!croids.users.hasOwnProperty(message.author.id)) {
             croids.users[message.author.id] = {"availabledate":0, "timezone":0};
-            fs.writeFile('../croids.json', JSON.stringify(croids), function (err) {
+            fs.writeFile('./croids.json', JSON.stringify(croids), function (err) {
                 if (err) return console.log(err);
             });
           }
@@ -15,7 +15,7 @@ module.exports = {
             let timeDec = ((timeTillCroid.getTime() - now.getTime()) / 3600000);
             message.channel.send(`Croid can be mined again at ${timeTillCroid.toUTCString()} (${Math.floor(timeDec)}h ${Math.floor(60 * (timeDec - Math.floor(timeDec)))}m)`);
             croids.users[message.author.id].availabledate = timeTillCroid.getTime();
-            fs.writeFile('../croids.json', JSON.stringify(croids), function (err) {
+            fs.writeFile('./croids.json', JSON.stringify(croids), function (err) {
                 if (err) return console.log(err);
             });
             return;
