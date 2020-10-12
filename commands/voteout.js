@@ -1,7 +1,7 @@
 module.exports = {
     name: 'voteout',
     description: 'Vote out of all white star lists',
-    async execute(message, args) {
+    async execute(message, args, oneListOnly) {
         var vcRole = message.guild.roles.find(role => role.name == `vc list`);
           var sosRole = message.guild.roles.find(role => role.name == `sos list`);
           var rsvdRole = message.guild.roles.find(role => role.name == `rsvd list`);
@@ -12,6 +12,13 @@ module.exports = {
           await message.member.removeRole(rsvdRole).catch(nope=>{});
           await message.member.removeRole(voidRole).catch(nope=>{});
           await message.member.removeRole(fillRole).catch(nope=>{});
+          if(oneListOnly) {
+            message.channel.send({embed: {
+              color:4360181,
+              title:`SOS list`,
+              description: message.guild.roles.find(role => role.name == `sos list`).members.map(m=>m.user.tag).join('\n')
+            }});
+          }
           message.channel.send({embed: {
             color:4360181,
             title:`VC list`,

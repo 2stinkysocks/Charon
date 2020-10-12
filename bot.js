@@ -89,10 +89,10 @@ client.on(`message`, async message => {
         client.commands.get('votein').execute(message, args);
     }
     if(command === "voteout") {
-        client.commands.get('voteout').execute(message, args);
+        client.commands.get('voteout').execute(message, args, client.commands.get('votein').oneListOnly);
     }
     if(command === "list") {
-        client.commands.get('list').execute(message, args);
+        client.commands.get('list').execute(message, args, client.commands.get('votein').oneListOnly);
     }
     if(command === "croid") {
         client.commands.get('croid').execute(message, args, croids, timestring, fs);

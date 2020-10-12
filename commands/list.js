@@ -1,7 +1,7 @@
 module.exports = {
     name: 'list',
     description: 'List white star roles',
-    async execute(message, args) {
+    async execute(message, args, oneListOnly) {
         if(args[0] == `count`) {
             let countVc = message.guild.roles.find(role => role.name == `vc list`).members.size;
             let countSOS = message.guild.roles.find(role => role.name == `sos list`).members.size;
@@ -105,6 +105,14 @@ module.exports = {
               color:4360181,
               title:`Void-ws`,
               description: message.guild.roles.find(role => role.name == `void-ws`).members.map(m=>m.user.tag).join('\n')
+            }});
+            return;
+          }
+          if(oneListOnly) {
+            message.channel.send({embed: {
+              color:4360181,
+              title:`SOS list`,
+              description: message.guild.roles.find(role => role.name == `sos list`).members.map(m=>m.user.tag).join('\n')
             }});
             return;
           }
