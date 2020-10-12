@@ -18,6 +18,7 @@ module.exports = {
               title:`SOS list`,
               description: message.guild.roles.find(role => role.name == `sos list`).members.map(m=>m.user.tag).join('\n')
             }});
+            return;
           }
           message.channel.send({embed: {
             color:4360181,
