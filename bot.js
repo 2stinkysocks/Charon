@@ -25,6 +25,20 @@ client.on('error', error => {
 client.on(`ready`, () => {
   console.log(`Bot has started.`); 
   client.user.setActivity(`you enlist! | -help`, { type : 'WATCHING'});
+
+  // autovote
+  setInterval(function(){
+    var date = new Date(); 
+    if(date.getUTCHours() === 11 && date.getUTCMinutes() === 0 && date.getUTCDay() === 6){
+        Object.keys(recurringVoters.users).forEach(value => {
+            var guild = client.guilds.get('640692199557955587');
+            var listRole = guild.roles.find(role => role.name === recurringVoters.users[value] + " list");
+
+            guild.members.get(value).addRole(listRole);
+            guild.members.get(value).send(`You have been automatically enlisted in the ${recurringVoters.users[value]} list.\n\nType **${config.prefix}autovote disable** to disable this`);
+        });
+    }
+  }, 60000);
 });
 
 client.on(`guildCreate`, guild => {

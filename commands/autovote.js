@@ -2,7 +2,14 @@ module.exports = {
     name: 'autovote',
     description: 'Opt in or out to automatic weekly voteins.',
     execute(message, args, fs, recurringVoters) {
-      return; // This is to disable the command for the time being, will be removed
+      const allowedUsers = ['417439359868862465'];
+      var isAllowed = false;
+      allowedUsers.forEach(id => {
+        if(message.author.id === id) {
+          isAllowed = true; // TEST THIS TEST THIS TEST THIS TEST THIS TEST THIS TEST THIS
+        }
+      });
+      if(!isAllowed) return;
       if(args[0] == "enable" || args[0] == "enabled") {
         if(recurringVoters.users[message.author.id] != null) return message.channel.send(`You are already set to vote in automatically to the ${recurringVoters.users[message.author.id]} list!`);
         var list = args[1].toLowerCase();
