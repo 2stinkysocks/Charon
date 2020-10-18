@@ -29,7 +29,7 @@ client.on(`ready`, () => {
   // autovote
   setInterval(() => {
     var date = new Date(); 
-    if(date.getUTCHours() === 11 && date.getUTCMinutes() === 0 && date.getUTCDay() === 6){
+    if(date.getUTCHours() === 20 && date.getUTCMinutes() === 0 && date.getUTCDay() === 0){
         Object.keys(recurringVoters.users).forEach(value => {
             var guild = client.guilds.get('640692199557955587');
             var listRole = guild.roles.find(role => role.name === recurringVoters.users[value] + " list");
