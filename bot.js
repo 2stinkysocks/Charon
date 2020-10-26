@@ -125,6 +125,9 @@ client.on(`message`, async message => {
     if(command === "autovote") {
         client.commands.get('autovote').execute(message, args, fs, recurringVoters);
     }
+    if(command === "getdata") {
+        client.commands.get('getdata').execute(message, args, fs);
+    }
 
 });
 client.login(process.env.BOT_TOKEN)
