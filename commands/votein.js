@@ -18,13 +18,13 @@ module.exports = {
     }
 
     if (message.channel.name != `white-star-enlist` && message.channel.name != `private-bot-playground`) return message.channel.send(`You can't enlist in this channel!`);
-    if (args[0] == null) return message.channel.send(`You need to specify a list! (vc, sos, rsvd, void, fill)`);
+    if (args[0] == null) return message.channel.send(`You need to specify a list! (vc, sos, rsvd, allies, fill)`);
     var list = args[0].toLowerCase();
-    if (list != `vc` && list != `sos` && list != `rsvd` && list != `void` && list != `fill`) return message.channel.send(`${args[0]} is not a valid list! use ${config.prefix}votein (vc, sos, rsvd, void, fill)`);
+    if (list != `vc` && list != `sos` && list != `rsvd` && list != `allies` && list != `fill`) return message.channel.send(`${args[0]} is not a valid list! use ${config.prefix}votein (vc, sos, rsvd, allies, fill)`);
     if (message.member.roles.find(role => role.name == `vc list`)) return message.channel.send(`You have voted into vc already!`);
     if (message.member.roles.find(role => role.name == `sos list`)) return message.channel.send(`You have voted into sos already!`);
     if (message.member.roles.find(role => role.name == `rsvd list`)) return message.channel.send(`You have voted into rsvd already!`);
-    if (message.member.roles.find(role => role.name == "void list")) return message.channel.send(`You have voted into void already!`);
+    if (message.member.roles.find(role => role.name == "allies list")) return message.channel.send(`You have voted into allies already!`);
     if (message.member.roles.find(role => role.name == `fill list`)) return message.channel.send(`You have voted into fill already!`);
     switch (list) {
       case `vc`:
@@ -54,8 +54,8 @@ module.exports = {
         message.channel.send({
           embed: {
             color: 4360181,
-            title: `Void list`,
-            description: message.guild.roles.find(role => role.name == `void list`).members.map(m => m.user.tag).join('\n')
+            title: `Allies list`,
+            description: message.guild.roles.find(role => role.name == `allies list`).members.map(m => m.user.tag).join('\n')
           }
         });
         message.channel.send({
@@ -95,8 +95,8 @@ module.exports = {
         message.channel.send({
           embed: {
             color: 4360181,
-            title: `Void list`,
-            description: message.guild.roles.find(role => role.name == `void list`).members.map(m => m.user.tag).join('\n')
+            title: `Allies list`,
+            description: message.guild.roles.find(role => role.name == `allies list`).members.map(m => m.user.tag).join('\n')
           }
         });
         message.channel.send({
@@ -136,8 +136,8 @@ module.exports = {
         message.channel.send({
           embed: {
             color: 4360181,
-            title: `Void list`,
-            description: message.guild.roles.find(role => role.name == `void list`).members.map(m => m.user.tag).join('\n')
+            title: `Allies list`,
+            description: message.guild.roles.find(role => role.name == `allies list`).members.map(m => m.user.tag).join('\n')
           }
         });
         message.channel.send({
@@ -150,8 +150,8 @@ module.exports = {
 
         message.channel.send(`${message.author.username} has signed up for this week's white star list.`);
         break;
-      case `void`:
-        var role = message.guild.roles.find(role => role.name == `void list`);
+      case `allies`:
+        var role = message.guild.roles.find(role => role.name == `allies list`);
         await message.member.addRole(role).catch(console.error);
         message.channel.send({
           embed: {
@@ -177,8 +177,8 @@ module.exports = {
         message.channel.send({
           embed: {
             color: 4360181,
-            title: `Void list`,
-            description: message.guild.roles.find(role => role.name == `void list`).members.map(m => m.user.tag).join('\n')
+            title: `Allies list`,
+            description: message.guild.roles.find(role => role.name == `allies list`).members.map(m => m.user.tag).join('\n')
           }
         });
         message.channel.send({
@@ -216,8 +216,8 @@ module.exports = {
         message.channel.send({
           embed: {
             color: 4360181,
-            title: `Void list`,
-            description: message.guild.roles.find(role => role.name == `void list`).members.map(m => m.user.tag).join('\n')
+            title: `Allies list`,
+            description: message.guild.roles.find(role => role.name == `allies list`).members.map(m => m.user.tag).join('\n')
           }
         });
         message.channel.send({

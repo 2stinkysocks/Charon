@@ -60,7 +60,7 @@ module.exports = {
               message.channel.send({embed: {
                 color:4360181,
                 title: `Votein`,
-                description: `Vote into any of four whitestar lists: vc, sos, void, and fill.\n\nUse **${config.prefix}votein (vc, sos, void, fill)** to vote in, and show the current list.`
+                description: `Vote into any of four whitestar lists: vc, sos, allies, and fill.\n\nUse **${config.prefix}votein (vc, sos, allies, fill)** to vote in, and show the current list.`
               }})
             break;
             case "voteout":
@@ -74,7 +74,7 @@ module.exports = {
               message.channel.send({embed: {
                 color:4360181,
                 title: "List",
-                description: `Shows the vc, sos, rsvd, void, and fill whitestar lists.\n\nUse **${config.prefix}list (vc, sos, rsvd, void, fill, vc-ws, sos-ws, rsvd-ws, void-ws, bomber, miner)** to check each corresponding list.\n\nYou can also use **${config.prefix}list count** to check how many members are in each list.`
+                description: `Shows the vc, sos, rsvd, allies, and fill whitestar lists.\n\nUse **${config.prefix}list (vc, sos, rsvd, allies, fill, vc-ws, sos-ws, rsvd-ws, allies-ws, bomber, miner)** to check each corresponding list.\n\nYou can also use **${config.prefix}list count** to check how many members are in each list.`
               }})
             break;
             case "ping":

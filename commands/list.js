@@ -6,10 +6,10 @@ module.exports = {
             let countVc = message.guild.roles.find(role => role.name == `vc list`).members.size;
             let countSOS = message.guild.roles.find(role => role.name == `sos list`).members.size;
             let countRSVD = message.guild.roles.find(role => role.name == `rsvd list`).members.size;
-            let countVoid = message.guild.roles.find(role => role.name == `void list`).members.size;
+            let countAllies = message.guild.roles.find(role => role.name == `allies list`).members.size;
             let countFill = message.guild.roles.find(role => role.name == `fill list`).members.size;
-            let countTotal = countVc + countSOS + countRSVD + countVoid + countFill;
-            message.channel.send(`**Votein counts:**\n\nVc: ${countVc}\nSOS: ${countSOS}\nRSVD: ${countRSVD}\nVoid: ${countVoid}\nFill: ${countFill}\n\nTotal: ${countTotal}`);
+            let countTotal = countVc + countSOS + countRSVD + countAllies + countFill;
+            message.channel.send(`**Votein counts:**\n\nVc: ${countVc}\nSOS: ${countSOS}\nRSVD: ${countRSVD}\nAllies: ${countAllies}\nFill: ${countFill}\n\nTotal: ${countTotal}`);
             return;
           }
           if(args[0] == `bomber`) {
@@ -60,11 +60,11 @@ module.exports = {
             }});
             return;
           }
-          if(args[0] == `void`) {
+          if(args[0] == `allies`) {
             message.channel.send({embed: {
               color:4360181,
-              title:`Void list`,
-              description: message.guild.roles.find(role => role.name == `void list`).members.map(m=>m.user.tag).join('\n')
+              title:`Allies list`,
+              description: message.guild.roles.find(role => role.name == `allies list`).members.map(m=>m.user.tag).join('\n')
             }});
             return;
           }
@@ -100,11 +100,11 @@ module.exports = {
             }});
             return;
           }
-          if(args[0] == `void-ws`) {
+          if(args[0] == `allies-ws`) {
             message.channel.send({embed: {
               color:4360181,
-              title:`Void-ws`,
-              description: message.guild.roles.find(role => role.name == `void-ws`).members.map(m=>m.user.tag).join('\n')
+              title:`Allies-ws`,
+              description: message.guild.roles.find(role => role.name == `allies-ws`).members.map(m=>m.user.tag).join('\n')
             }});
             return;
           }
@@ -133,8 +133,8 @@ module.exports = {
         }});
         message.channel.send({embed: {
           color:4360181,
-          title:`Void list`,
-          description: message.guild.roles.find(role => role.name == `void list`).members.map(m=>m.user.tag).join('\n')
+          title:`Allies list`,
+          description: message.guild.roles.find(role => role.name == `allies list`).members.map(m=>m.user.tag).join('\n')
       }});
         message.channel.send({embed: {
             color:4360181,
