@@ -20,6 +20,7 @@ module.exports = {
         fs.writeFile('./bannedAutoVoters.json', JSON.stringify(bannedAutoVoters), function (err) {
           if (err) return console.log(err);
         });
+        delete recurringVoters.users[userToBan.id];
         message.channel.send(`${userToBan.user.username} is now banned`);
         return;
       } else if(args[0] == "unban") {
