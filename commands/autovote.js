@@ -2,7 +2,7 @@ module.exports = {
     name: 'autovote',
     description: 'Opt in or out to automatic weekly voteins.',
     execute(message, args, fs, recurringVoters, bannedAutoVoters) {
-      if(!message.member.roles.some(role => role.name === 'Charon Tester')) return message.channel.send("This is currently a beta-only feature!");
+      //if(!message.member.roles.some(role => role.name === 'Charon Tester')) return message.channel.send("This is currently a beta-only feature!");
 
       if(bannedAutoVoters[message.author.id] == true) return message.channel.send("You are currently banned from using this feature. Contact an Officer if you believe this is an error.");
       
