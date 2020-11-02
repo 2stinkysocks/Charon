@@ -8,7 +8,12 @@ module.exports = {
       
       var name = args.join(" ").slice(args[0].length).trim().toLowerCase();
       if(args[0] == "ban") {
-        var userToBan = message.guild.members.find(member => member.user.username.toLowerCase().startsWith(name));
+        var userToBan;
+        if(message.mentions.members.first() == null) {
+          userToBan = message.guild.members.find(member => member.user.username.toLowerCase().startsWith(name));
+        } else {
+          userToBan = message.mentions.members.first();
+        }
         if(!message.member.roles.some(role => role.name === "Officer")) return message.channel.send("This is an Officer only command!");
         if(bannedAutoVoters[userToBan.id] == true) return message.channel.send("This user is already banned!");
         bannedAutoVoters[userToBan.id] = true;
@@ -18,7 +23,12 @@ module.exports = {
         message.channel.send(`${userToBan.user.username} is now banned`);
         return;
       } else if(args[0] == "unban") {
-        var userToUnban = message.guild.members.find(member => member.user.username.toLowerCase().startsWith(name));
+        var userToUnban;
+        if(message.mentions.members.first() == null) {
+          userToUnban = message.guild.members.find(member => member.user.username.toLowerCase().startsWith(name));
+        } else {
+          userToUnban = message.mentions.members.first();
+        }
         if(!message.member.roles.some(role => role.name === "Officer")) return message.channel.send("This is an Officer only command!");
         if(bannedAutoVoters[userToUnban.id] == false || bannedAutoVoters[userToUnban.id] == null) return message.channel.send("This user is not banned!");
         bannedAutoVoters[userToUnban.id] = false;
