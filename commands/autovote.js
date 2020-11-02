@@ -1,16 +1,30 @@
 module.exports = {
     name: 'autovote',
     description: 'Opt in or out to automatic weekly voteins.',
-    execute(message, args, fs, recurringVoters) {
-      // const allowedUsers = ['417439359868862465'];
-      // var isAllowed = false;
-      // allowedUsers.forEach(id => {
-      //   if(message.author.id === id) {
-      //     isAllowed = true; 
-      //   }
-      // });
-      if(!message.member.roles.some(role => role.name === 'Charon Tester')) return;
+    execute(message, args, fs, recurringVoters, bannedAutoVoters) {
+      if(!message.member.roles.some(role => role.name === 'Charon Tester')) return message.channel.send("This is currently a beta-only feature!");
 
+      if(bannedAutoVoters[message.author.id] == true) return message.channel.send("You are currently banned from using this feature. Contact an Officer if you believe this is an error.");
+      
+      var name = args.join(" ").slice(args[0].length).trim().toLowerCase();
+      if(args[0] == "ban") {
+        var userToBan = message.guild.members.find(member => member.user.username.toLowerCase().startsWith(name));
+        if(!message.member.roles.some(role => role.name === "Officer")) return message.channel.send("This is an Officer only command!");
+        if(bannedAutoVoters[userToBan.id] == true) return message.channel.send("This user is already banned!");
+        bannedAutoVoters[userToBan.id] = true;
+        fs.writeFile('./bannedAutoVoters.json', JSON.stringify(bannedAutoVoters), function (err) {
+          if (err) return console.log(err);
+        });
+        return;
+      } else if(args[0] == "unban") {
+        var userToBan = message.guild.members.find(member => member.user.username.toLowerCase().startsWith(name));
+        if(!message.member.roles.some(role => role.name === "Officer")) return message.channel.send("This is an Officer only command!");
+        if(bannedAutoVoters[userToBan.id] == false || bannedAutoVoters[userToBan.id] == null) return message.channel.send("This user is not banned!");
+        bannedAutoVoters[userToBan.id] = false;
+        fs.writeFile('./bannedAutoVoters.json', JSON.stringify(bannedAutoVoters), function (err) {
+          if (err) return console.log(err);
+        });
+      }
 
       if(args[0] == "enable" || args[0] == "enabled") {
         if(recurringVoters.users[message.author.id] != null) return message.channel.send(`You are already set to vote in automatically to the ${recurringVoters.users[message.author.id]} list!`);
