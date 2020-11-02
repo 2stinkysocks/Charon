@@ -15,15 +15,18 @@ module.exports = {
         fs.writeFile('./bannedAutoVoters.json', JSON.stringify(bannedAutoVoters), function (err) {
           if (err) return console.log(err);
         });
+        message.channel.send(`${userToBan.username} is now banned`);
         return;
       } else if(args[0] == "unban") {
-        var userToBan = message.guild.members.find(member => member.user.username.toLowerCase().startsWith(name));
+        var userToUnban = message.guild.members.find(member => member.user.username.toLowerCase().startsWith(name));
         if(!message.member.roles.some(role => role.name === "Officer")) return message.channel.send("This is an Officer only command!");
-        if(bannedAutoVoters[userToBan.id] == false || bannedAutoVoters[userToBan.id] == null) return message.channel.send("This user is not banned!");
-        bannedAutoVoters[userToBan.id] = false;
+        if(bannedAutoVoters[userToUnban.id] == false || bannedAutoVoters[userToUnban.id] == null) return message.channel.send("This user is not banned!");
+        bannedAutoVoters[userToUnan.id] = false;
         fs.writeFile('./bannedAutoVoters.json', JSON.stringify(bannedAutoVoters), function (err) {
           if (err) return console.log(err);
         });
+        essage.channel.send(`${userToUnban.username} is now unbanned`);
+        return;
       }
 
       if(args[0] == "enable" || args[0] == "enabled") {
