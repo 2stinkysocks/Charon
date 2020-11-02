@@ -21,7 +21,7 @@ module.exports = {
         var userToUnban = message.guild.members.find(member => member.user.username.toLowerCase().startsWith(name));
         if(!message.member.roles.some(role => role.name === "Officer")) return message.channel.send("This is an Officer only command!");
         if(bannedAutoVoters[userToUnban.id] == false || bannedAutoVoters[userToUnban.id] == null) return message.channel.send("This user is not banned!");
-        bannedAutoVoters[userToUnan.id] = false;
+        bannedAutoVoters[userToUnban.id] = false;
         fs.writeFile('./bannedAutoVoters.json', JSON.stringify(bannedAutoVoters), function (err) {
           if (err) return console.log(err);
         });
