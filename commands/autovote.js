@@ -15,7 +15,7 @@ module.exports = {
         fs.writeFile('./bannedAutoVoters.json', JSON.stringify(bannedAutoVoters), function (err) {
           if (err) return console.log(err);
         });
-        message.channel.send(`${userToBan.username} is now banned`);
+        message.channel.send(`${userToBan.user.username} is now banned`);
         return;
       } else if(args[0] == "unban") {
         var userToUnban = message.guild.members.find(member => member.user.username.toLowerCase().startsWith(name));
@@ -25,7 +25,7 @@ module.exports = {
         fs.writeFile('./bannedAutoVoters.json', JSON.stringify(bannedAutoVoters), function (err) {
           if (err) return console.log(err);
         });
-        message.channel.send(`${userToUnban.username} is now unbanned`);
+        message.channel.send(`${userToUnban.user.username} is now unbanned`);
         return;
       }
 
