@@ -25,7 +25,7 @@ module.exports = {
         fs.writeFile('./bannedAutoVoters.json', JSON.stringify(bannedAutoVoters), function (err) {
           if (err) return console.log(err);
         });
-        essage.channel.send(`${userToUnban.username} is now unbanned`);
+        message.channel.send(`${userToUnban.username} is now unbanned`);
         return;
       }
 
