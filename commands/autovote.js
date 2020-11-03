@@ -1,7 +1,7 @@
 module.exports = {
     name: 'autovote',
     description: 'Opt in or out to automatic weekly voteins.',
-    execute(message, args, fs, recurringVoters, bannedAutoVoters) {
+    execute(message, args, fs, recurringVoters, bannedAutoVoters, client) {
       //if(!message.member.roles.some(role => role.name === 'Charon Tester')) return message.channel.send("This is currently a beta-only feature!");
 
       if(bannedAutoVoters[message.author.id] == true) return message.channel.send("You are currently banned from using this feature. Contact an Officer if you believe this is an error.");
@@ -38,6 +38,20 @@ module.exports = {
         });
         message.channel.send(`${userToUnban.user.username} is now unbanned`);
         return;
+      }
+
+      if(args[0] == 'list') {
+        var autovoteList = "";
+        Object.keys(recurringVoters.users).forEach(voter => {
+          var currentVoter = client.users.get(voter);
+          autovoteList += voter + ' - ' + currentVoter.tag + '\n';
+        });
+        if(autovoteList == "") return message.channel.send("There are no current autovoters for any list!");
+        message.channel.send({embed: {
+          color:4360181,
+          title:`Current Autovoters`,
+          description: autovoteList
+        }});
       }
 
       if(args[0] == "enable" || args[0] == "enabled") {

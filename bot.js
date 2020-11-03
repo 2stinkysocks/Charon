@@ -124,7 +124,7 @@ client.on(`message`, async message => {
         client.commands.get('security').execute(message, args);
     }
     if(command === "autovote") {
-        client.commands.get('autovote').execute(message, args, fs, recurringVoters, bannedAutoVoters);
+        client.commands.get('autovote').execute(message, args, fs, recurringVoters, bannedAutoVoters, client);
     }
     if(command === "getdata") {
         client.commands.get('getdata').execute(message, args, fs);
