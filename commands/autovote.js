@@ -51,7 +51,8 @@ module.exports = {
           color:4360181,
           title:`Current Autovoters`,
           description: autovoteList
-        }});
+        }});        
+        return;
       }
 
       if(args[0] == "enable" || args[0] == "enabled") {
@@ -71,7 +72,7 @@ module.exports = {
         });
         message.channel.send(`**You will no longer be automatically voted in to a list.**`);
       } else {
-        return message.channel.send("You need to specify `enable` or `disable` for recurring signup.")
+        return message.channel.send("You need to specify `enable` or `disable` for recurring signup, or `list` to list current autovoters.")
       }
     }
 }
