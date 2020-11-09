@@ -35,7 +35,16 @@ client.on(`ready`, () => {
              var guild = client.guilds.get('640692199557955587');
              var listRole = guild.roles.find(role => role.name === recurringVoters.users[value] + " list");
              guild.members.get(value).addRole(listRole);
-             guild.members.get(value).send(`It’s time again to battle those that would oppose us! Make them pay for their insolence!\n\nYou have been enlisted into this week's ${recurringVoters.users[value]} White Star!\n\nThe Society thanks you for your continued service! O7~:skull_crossbones:\n\n(In the future, if you want to disable this, you can use **-autovote disable**)`, {files: ['https://cdn.discordapp.com/attachments/640704506014728204/767109348806623252/image0.gif']});
+             var random = Math.floor(Math.random() * Math.floor(1));
+             switch(random) {
+                case 0:
+                    guild.members.get(value).send(`It’s time again to battle those that would oppose us! Make them pay for their insolence!\n\nYou have been enlisted into this week's ${recurringVoters.users[value]} White Star!\n\nThe Society thanks you for your continued service! O7~:skull_crossbones:\n\n(In the future, if you want to disable this, you can use **-autovote disable**)`, {files: ['https://cdn.discordapp.com/attachments/640704506014728204/767109348806623252/image0.gif']});
+                break;
+                case 1:
+                    guild.members.get(value).send({files: ['https://cdn.discordapp.com/attachments/640704506014728204/775442236909420634/image0.png']});
+                    guild.members.get(value).send(`Gentlemen, it’s time to polish off that whiskey, finish that last smoke and climb in that rig. We’re taking flight once again to thwart our enemies from stealing what’s rightfully ours!\n\nThe Society appreciates your continued support against all foes!\n\n“You tell him I’m coming! I’m coming and Hell’s coming with me!” ~ Wyatt Earp\n\n:tumbler_glass: ~ :skull_crossbones:\n\n-autovote disable (to turn off autovote)`);
+                break;   
+             }
          });
     }
   }, 60000);
