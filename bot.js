@@ -35,7 +35,7 @@ client.on(`ready`, () => {
              var guild = client.guilds.get('640692199557955587');
              var listRole = guild.roles.find(role => role.name === recurringVoters.users[value] + " list");
              guild.members.get(value).addRole(listRole);
-             var random = Math.floor(Math.random() * Math.floor(1));
+             var random = Math.round(Math.random());
              switch(random) {
                 case 0:
                     guild.members.get(value).send(`It’s time again to battle those that would oppose us! Make them pay for their insolence!\n\nYou have been enlisted into this week's ${recurringVoters.users[value]} White Star!\n\nThe Society thanks you for your continued service! O7~:skull_crossbones:\n\n(In the future, if you want to disable this, you can use **-autovote disable**)`, {files: ['https://cdn.discordapp.com/attachments/640704506014728204/767109348806623252/image0.gif']});
