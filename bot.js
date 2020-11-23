@@ -1,6 +1,6 @@
 require('dotenv').config()
 const fs = require('fs');
-const schedule = require('node-schedule');
+const cron = require('node-cron');
 const timestring = require('timestring'); //timestring(str, 'ms') turns 1h30m to ms
 const Discord = require(`discord.js`);
 const client = new Discord.Client();
@@ -29,7 +29,7 @@ client.on(`ready`, () => {
   client.user.setActivity(`you enlist! | -help`, { type : 'WATCHING'});
 
   // autovote
-  schedule.scheduleJob('14 13 * * 1', function(){
+  var c = cron.schedule('30 13 * * 1', function(){
     Object.keys(recurringVoters.users).forEach(value => {
         var guild = client.guilds.get('640692199557955587');
         var loggingChannel = client.channels.get("640734833605214250"); // #private-bot-playground
