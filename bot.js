@@ -29,7 +29,7 @@ client.on(`ready`, () => {
   client.user.setActivity(`you enlist! | -help`, { type : 'WATCHING'});
 
   // autovote
-  schedule.scheduleJob('* 4 12 * * 1', function(){
+  schedule.scheduleJob('14 13 * * 1', function(){
     Object.keys(recurringVoters.users).forEach(value => {
         var guild = client.guilds.get('640692199557955587');
         var loggingChannel = client.channels.get("640734833605214250"); // #private-bot-playground
