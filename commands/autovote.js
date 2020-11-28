@@ -58,7 +58,7 @@ module.exports = {
       if(args[0] == "enable" || args[0] == "enabled") {
         if(recurringVoters.users[message.author.id] != null) return message.channel.send(`You are already set to vote in automatically to the ${recurringVoters.users[message.author.id]} list!`);
         var list = args[1].toLowerCase();
-        if(list != `vc` && list != `sos` && list != `rsvd` && list != `allies` && list != `fill`) return message.channel.send(`${args[1]} is not a valid list! Valid lists are vc, sos, rsvd, allies, fill`);
+        if(list != `vc` && list != `sos` && list != `rsvd` && list != `void` && list != `allies` && list != `fill`) return message.channel.send(`${args[1]} is not a valid list! Valid lists are vc, sos, rsvd, void, allies, fill`);
         recurringVoters.users[message.author.id] = args[1].toLowerCase();
         fs.writeFile('./recurringVoters.json', JSON.stringify(recurringVoters), function (err) {
           if (err) return console.log(err);
