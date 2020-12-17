@@ -2,12 +2,12 @@ module.exports = {
     name: 'voteout',
     description: 'Vote out of all white star lists',
     async execute(message, args, oneListOnly) {
-        var vcRole = message.guild.roles.find(role => role.name == `vc list`);
-          var sosRole = message.guild.roles.find(role => role.name == `sos list`);
-          var rsvdRole = message.guild.roles.find(role => role.name == `rsvd list`);
-          var voidRole = message.guild.roles.find(role => role.name === `void list`);
-          var alliesRole = message.guild.roles.find(role => role.name == `allies list`);
-          var fillRole = message.guild.roles.find(role => role.name == `fill list`);
+        var vcRole = message.guild.roles.cache.find(role => role.name == `vc list`);
+          var sosRole = message.guild.roles.cache.find(role => role.name == `sos list`);
+          var rsvdRole = message.guild.roles.cache.find(role => role.name == `rsvd list`);
+          var voidRole = message.guild.roles.cache.find(role => role.name === `void list`);
+          var alliesRole = message.guild.roles.cache.find(role => role.name == `allies list`);
+          var fillRole = message.guild.roles.cache.find(role => role.name == `fill list`);
           await message.member.removeRole(vcRole).catch(nope=>{});
           await message.member.removeRole(sosRole).catch(nope=>{});
           await message.member.removeRole(rsvdRole).catch(nope=>{});
@@ -18,39 +18,39 @@ module.exports = {
             message.channel.send({embed: {
               color:4360181,
               title:`SOS list`,
-              description: message.guild.roles.find(role => role.name == `sos list`).members.map(m=>m.user.tag).join('\n')
+              description: message.guild.roles.cache.find(role => role.name == `sos list`).members.map(m=>m.user.tag).join('\n')
             }});
             return;
           }
           message.channel.send({embed: {
             color:4360181,
             title:`VC list`,
-            description: message.guild.roles.find(role => role.name == `vc list`).members.map(m=>m.user.tag).join('\n')
+            description: message.guild.roles.cache.find(role => role.name == `vc list`).members.map(m=>m.user.tag).join('\n')
         }});
         message.channel.send({embed: {
             color:4360181,
             title:`SOS list`,
-            description: message.guild.roles.find(role => role.name == `sos list`).members.map(m=>m.user.tag).join('\n')
+            description: message.guild.roles.cache.find(role => role.name == `sos list`).members.map(m=>m.user.tag).join('\n')
         }});
         message.channel.send({embed: {
           color:4360181,
           title:`RSVD list`,
-          description: message.guild.roles.find(role => role.name == `rsvd list`).members.map(m=>m.user.tag).join('\n')
+          description: message.guild.roles.cache.find(role => role.name == `rsvd list`).members.map(m=>m.user.tag).join('\n')
       }});
       message.channel.send({embed: {
           color: 4360181,
           title: `Void list`,
-          description: message.guild.roles.find(role => role.name == `void list`).members.map(m => m.user.tag).join('\n')
+          description: message.guild.roles.cache.find(role => role.name == `void list`).members.map(m => m.user.tag).join('\n')
       }});
         message.channel.send({embed: {
           color:4360181,
           title:`Allies list`,
-          description: message.guild.roles.find(role => role.name == `allies list`).members.map(m=>m.user.tag).join('\n')
+          description: message.guild.roles.cache.find(role => role.name == `allies list`).members.map(m=>m.user.tag).join('\n')
       }});
         message.channel.send({embed: {
             color:4360181,
             title:`Fill list`,
-            description: message.guild.roles.find(role => role.name == `fill list`).members.map(m=>m.user.tag).join('\n')
+            description: message.guild.roles.cache.find(role => role.name == `fill list`).members.map(m=>m.user.tag).join('\n')
         }});
           message.channel.send(`${message.author.username} has left this week's white star list.`);
     }

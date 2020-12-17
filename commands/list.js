@@ -3,12 +3,12 @@ module.exports = {
     description: 'List white star roles',
     async execute(message, args, oneListOnly) {
         if(args[0] == `count`) {
-            let countVc = message.guild.roles.find(role => role.name == `vc list`).members.size;
-            let countSOS = message.guild.roles.find(role => role.name == `sos list`).members.size;
-            let countRSVD = message.guild.roles.find(role => role.name == `rsvd list`).members.size;
-            let countAllies = message.guild.roles.find(role => role.name == `allies list`).members.size;
-            let countVoid = message.guild.roles.find(role => role.name == `void list`).members.size;
-            let countFill = message.guild.roles.find(role => role.name == `fill list`).members.size;
+            let countVc = message.guild.roles.cache.find(role => role.name == `vc list`).members.size;
+            let countSOS = message.guild.roles.cache.find(role => role.name == `sos list`).members.size;
+            let countRSVD = message.guild.roles.cache.find(role => role.name == `rsvd list`).members.size;
+            let countAllies = message.guild.roles.cache.find(role => role.name == `allies list`).members.size;
+            let countVoid = message.guild.roles.cache.find(role => role.name == `void list`).members.size;
+            let countFill = message.guild.roles.cache.find(role => role.name == `fill list`).members.size;
             let countTotal = countVc + countSOS + countRSVD + countAllies + countVoid + countFill;
             message.channel.send(`**Votein counts:**\n\nVc: ${countVc}\nSOS: ${countSOS}\nRSVD: ${countRSVD}\nVoid: ${countVoid}\nAllies: ${countAllies}\nFill: ${countFill}\n\nTotal: ${countTotal}`);
             return;
@@ -17,7 +17,7 @@ module.exports = {
             message.channel.send({embed: {
               color:4360181,
               title:`Stealth Bombers`,
-              description: message.guild.roles.find(role => role.name == `Stealth Bomber`).members.map(m=>m.user.tag).join('\n')
+              description: message.guild.roles.cache.find(role => role.name == `Stealth Bomber`).members.map(m=>m.user.tag).join('\n')
             }});
             return;
           }
@@ -25,7 +25,7 @@ module.exports = {
             message.channel.send({embed: {
               color:4360181,
               title:`Security`,
-              description: message.guild.roles.find(role => role.name == `Security`).members.map(m=>m.user.tag).join('\n')
+              description: message.guild.roles.cache.find(role => role.name == `Security`).members.map(m=>m.user.tag).join('\n')
             }});
             return;
           }
@@ -33,7 +33,7 @@ module.exports = {
             message.channel.send({embed: {
               color:4360181,
               title:`Eve Miners`,
-              description: message.guild.roles.find(role => role.name == `Miner`).members.map(m=>m.user.tag).join('\n')
+              description: message.guild.roles.cache.find(role => role.name == `Miner`).members.map(m=>m.user.tag).join('\n')
             }});
             return;
           }
@@ -41,7 +41,7 @@ module.exports = {
             message.channel.send({embed: {
               color:4360181,
               title:`Vc list`,
-              description: message.guild.roles.find(role => role.name == `vc list`).members.map(m=>m.user.tag).join('\n')
+              description: message.guild.roles.cache.find(role => role.name == `vc list`).members.map(m=>m.user.tag).join('\n')
             }});
             return;
           }
@@ -49,7 +49,7 @@ module.exports = {
             message.channel.send({embed: {
               color:4360181,
               title:`SOS list`,
-              description: message.guild.roles.find(role => role.name == `sos list`).members.map(m=>m.user.tag).join('\n')
+              description: message.guild.roles.cache.find(role => role.name == `sos list`).members.map(m=>m.user.tag).join('\n')
             }});
             return;
           }
@@ -57,7 +57,7 @@ module.exports = {
             message.channel.send({embed: {
               color:4360181,
               title:`RSVD list`,
-              description: message.guild.roles.find(role => role.name == `rsvd list`).members.map(m=>m.user.tag).join('\n')
+              description: message.guild.roles.cache.find(role => role.name == `rsvd list`).members.map(m=>m.user.tag).join('\n')
             }});
             return;
           }
@@ -65,7 +65,7 @@ module.exports = {
             message.channel.send({embed: {
               color:4360181,
               title:`Void list`,
-              description: message.guild.roles.find(role => role.name == `void list`).members.map(m=>m.user.tag).join('\n')
+              description: message.guild.roles.cache.find(role => role.name == `void list`).members.map(m=>m.user.tag).join('\n')
             }});
             return;
           }
@@ -73,7 +73,7 @@ module.exports = {
             message.channel.send({embed: {
               color:4360181,
               title:`Allies list`,
-              description: message.guild.roles.find(role => role.name == `allies list`).members.map(m=>m.user.tag).join('\n')
+              description: message.guild.roles.cache.find(role => role.name == `allies list`).members.map(m=>m.user.tag).join('\n')
             }});
             return;
           }
@@ -81,7 +81,7 @@ module.exports = {
             message.channel.send({embed: {
               color:4360181,
               title:`Fill list`,
-              description: message.guild.roles.find(role => role.name == `fill list`).members.map(m=>m.user.tag).join('\n')
+              description: message.guild.roles.cache.find(role => role.name == `fill list`).members.map(m=>m.user.tag).join('\n')
             }});
             return;
           }
@@ -89,7 +89,7 @@ module.exports = {
             message.channel.send({embed: {
               color:4360181,
               title:`VC-ws`,
-              description: message.guild.roles.find(role => role.name == `vc-ws`).members.map(m=>m.user.tag).join('\n')
+              description: message.guild.roles.cache.find(role => role.name == `vc-ws`).members.map(m=>m.user.tag).join('\n')
             }});
             return;
           }
@@ -97,7 +97,7 @@ module.exports = {
             message.channel.send({embed: {
               color:4360181,
               title:`SOS-ws`,
-              description: message.guild.roles.find(role => role.name == `sos-ws`).members.map(m=>m.user.tag).join('\n')
+              description: message.guild.roles.cache.find(role => role.name == `sos-ws`).members.map(m=>m.user.tag).join('\n')
             }});
             return;
           }
@@ -105,7 +105,7 @@ module.exports = {
             message.channel.send({embed: {
               color:4360181,
               title:`RSVD-ws`,
-              description: message.guild.roles.find(role => role.name == `rsvd-ws`).members.map(m=>m.user.tag).join('\n')
+              description: message.guild.roles.cache.find(role => role.name == `rsvd-ws`).members.map(m=>m.user.tag).join('\n')
             }});
             return;
           }
@@ -113,7 +113,7 @@ module.exports = {
             message.channel.send({embed: {
               color:4360181,
               title:`Void-ws`,
-              description: message.guild.roles.find(role => role.name == `void-ws`).members.map(m=>m.user.tag).join('\n')
+              description: message.guild.roles.cache.find(role => role.name == `void-ws`).members.map(m=>m.user.tag).join('\n')
             }});
             return;
           }
@@ -121,7 +121,7 @@ module.exports = {
             message.channel.send({embed: {
               color:4360181,
               title:`Allies-ws`,
-              description: message.guild.roles.find(role => role.name == `allies-ws`).members.map(m=>m.user.tag).join('\n')
+              description: message.guild.roles.cache.find(role => role.name == `allies-ws`).members.map(m=>m.user.tag).join('\n')
             }});
             return;
           }
@@ -129,39 +129,39 @@ module.exports = {
             message.channel.send({embed: {
               color:4360181,
               title:`SOS list`,
-              description: message.guild.roles.find(role => role.name == `sos list`).members.map(m=>m.user.tag).join('\n')
+              description: message.guild.roles.cache.find(role => role.name == `sos list`).members.map(m=>m.user.tag).join('\n')
             }});
             return;
           }
           message.channel.send({embed: {
             color:4360181,
             title:`VC list`,
-            description: message.guild.roles.find(role => role.name == `vc list`).members.map(m=>m.user.tag).join('\n')
+            description: message.guild.roles.cache.find(role => role.name == `vc list`).members.map(m=>m.user.tag).join('\n')
           }});
           message.channel.send({embed: {
               color:4360181,
               title:`SOS list`,
-              description: message.guild.roles.find(role => role.name == `sos list`).members.map(m=>m.user.tag).join('\n')
+              description: message.guild.roles.cache.find(role => role.name == `sos list`).members.map(m=>m.user.tag).join('\n')
           }});
           message.channel.send({embed: {
             color:4360181,
             title:`RSVD list`,
-            description: message.guild.roles.find(role => role.name == `rsvd list`).members.map(m=>m.user.tag).join('\n')
+            description: message.guild.roles.cache.find(role => role.name == `rsvd list`).members.map(m=>m.user.tag).join('\n')
           }});
           message.channel.send({embed: {
             color:4360181,
             title:`Void list`,
-            description: message.guild.roles.find(role => role.name == `void list`).members.map(m=>m.user.tag).join('\n')
+            description: message.guild.roles.cache.find(role => role.name == `void list`).members.map(m=>m.user.tag).join('\n')
           }});
           message.channel.send({embed: {
             color:4360181,
             title:`Allies list`,
-            description: message.guild.roles.find(role => role.name == `allies list`).members.map(m=>m.user.tag).join('\n')
+            description: message.guild.roles.cache.find(role => role.name == `allies list`).members.map(m=>m.user.tag).join('\n')
           }});
           message.channel.send({embed: {
               color:4360181,
               title:`Fill list`,
-              description: message.guild.roles.find(role => role.name == `fill list`).members.map(m=>m.user.tag).join('\n')
+              description: message.guild.roles.cache.find(role => role.name == `fill list`).members.map(m=>m.user.tag).join('\n')
           }});
     }
 }
