@@ -8,12 +8,12 @@ module.exports = {
           var voidRole = message.guild.roles.cache.find(role => role.name === `void list`);
           var alliesRole = message.guild.roles.cache.find(role => role.name == `allies list`);
           var fillRole = message.guild.roles.cache.find(role => role.name == `fill list`);
-          await message.member.removeRole(vcRole).catch(nope=>{});
-          await message.member.removeRole(sosRole).catch(nope=>{});
-          await message.member.removeRole(rsvdRole).catch(nope=>{});
-          await message.member.removeRole(voidRole).catch(nope=>{});
-          await message.member.removeRole(alliesRole).catch(nope=>{});
-          await message.member.removeRole(fillRole).catch(nope=>{});
+          await message.member.roles.remove(vcRole).catch(nope=>{});
+          await message.member.roles.remove(sosRole).catch(nope=>{});
+          await message.member.roles.remove(rsvdRole).catch(nope=>{});
+          await message.member.roles.remove(voidRole).catch(nope=>{});
+          await message.member.roles.remove(alliesRole).catch(nope=>{});
+          await message.member.roles.remove(fillRole).catch(nope=>{});
           if(oneListOnly) {
             message.channel.send({embed: {
               color:4360181,

@@ -6,7 +6,7 @@ module.exports = {
     if(this.oneListOnly) {
       if (message.member.roles.cache.find(role => role.name == `sos list`)) return message.channel.send(`You have voted into sos already!`);
       message.channel.send("**NOTE**\n\nEveryone will be voted into the same list this week.")
-      await message.member.addRole(message.guild.roles.cache.find(role => role.name == `sos list`)).catch(console.error);
+      await message.member.roles.add(message.guild.roles.cache.find(role => role.name == `sos list`)).catch(console.error);
       message.channel.send({
         embed: {
           color: 4360181,
@@ -30,7 +30,7 @@ module.exports = {
     switch (list) {
       case `vc`:
         var role = message.guild.roles.cache.find(role => role.name == `vc list`);
-        await message.member.addRole(role).catch(console.error);
+        await message.member.roles.add(role).catch(console.error);
         message.channel.send({
           embed: {
             color: 4360181,
@@ -78,7 +78,7 @@ module.exports = {
         break;
       case `sos`:
         var role = message.guild.roles.cache.find(role => role.name == `sos list`);
-        await message.member.addRole(role).catch(console.error);
+        await message.member.roles.add(role).catch(console.error);
         message.channel.send({
           embed: {
             color: 4360181,
@@ -126,7 +126,7 @@ module.exports = {
         break;
       case `rsvd`:
         var role = message.guild.roles.cache.find(role => role.name == `rsvd list`);
-        await message.member.addRole(role).catch(console.error);
+        await message.member.roles.add(role).catch(console.error);
         message.channel.send({
           embed: {
             color: 4360181,
@@ -174,7 +174,7 @@ module.exports = {
         break;
         case `void`:
           var role = message.guild.roles.cache.find(role => role.name == `void list`);
-          await message.member.addRole(role).catch(console.error);
+          await message.member.roles.add(role).catch(console.error);
           message.channel.send({
             embed: {
               color: 4360181,
@@ -222,7 +222,7 @@ module.exports = {
           break;
       case `allies`:
         var role = message.guild.roles.cache.find(role => role.name == `allies list`);
-        await message.member.addRole(role).catch(console.error);
+        await message.member.roles.add(role).catch(console.error);
         message.channel.send({
           embed: {
             color: 4360181,
@@ -268,7 +268,7 @@ module.exports = {
         break;
       case `fill`:
         var role = message.guild.roles.cache.find(role => role.name == `fill list`);
-        await message.member.addRole(role).catch(console.error);
+        await message.member.roles.add(role).catch(console.error);
         message.channel.send({
           embed: {
             color: 4360181,
