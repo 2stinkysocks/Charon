@@ -11,6 +11,7 @@ const autoresponses = require(`./autoresponses.json`);
 const rsq = require(`./rsq.json`);
 const recurringVoters = require(`./recurringVoters.json`);
 const bannedAutoVoters = require(`./bannedAutoVoters.json`);
+const obols = null;
 
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
@@ -137,6 +138,9 @@ client.on(`message`, async message => {
     }
     if(command === "getdata") {
         client.commands.get('getdata').execute(message, args, fs);
+    }
+    if(command === "charon") {
+        client.commands.get('charon').execute(message, obols, Discord, client);
     }
 
 });
