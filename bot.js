@@ -86,7 +86,7 @@ client.on(`message`, async message => {
         message.channel.send(autoresponses[response].response + " ");
         }
     })                                                              // charon role \/
-    if((message.isMemberMentioned(client.user) || message.content.includes("714199666538840114")) && message.content.includes("?") && (message.content.toLowerCase().includes("who") || message.content.toLowerCase().includes("what") || message.content.toLowerCase().includes("when") || message.content.toLowerCase().includes("where") || message.content.toLowerCase().includes("why") || message.content.toLowerCase().includes("how") || message.content.toLowerCase().includes("can"))) {
+    if((message.mentions.users.has(client.user) || message.content.includes("714199666538840114")) && message.content.includes("?") && (message.content.toLowerCase().includes("who") || message.content.toLowerCase().includes("what") || message.content.toLowerCase().includes("when") || message.content.toLowerCase().includes("where") || message.content.toLowerCase().includes("why") || message.content.toLowerCase().includes("how") || message.content.toLowerCase().includes("can"))) {
         message.channel.send("I can't answer that! I'm not an AI..\n\n..yet")
     }
 
