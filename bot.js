@@ -32,9 +32,9 @@ client.on(`ready`, () => {
   // autovote
   var c = cron.schedule('45 14 * * monday', () => {
     Object.keys(recurringVoters.users).forEach(value => {
-        var guild = client.guilds.get('640692199557955587');
-        var listRole = guild.roles.find(role => role.name === recurringVoters.users[value] + " list");
-        guild.members.get(value).addRole(listRole);
+        var guild = client.guilds.cache.get('640692199557955587');
+        var listRole = guild.roles.cache.find(role => role.name === recurringVoters.users[value] + " list");
+        guild.members.cache.get(value).roles.add(listRole);
         var random = Math.round(Math.random() * 2); // number to multiply by is 0 - that number
         switch(random) {
            case 0:
