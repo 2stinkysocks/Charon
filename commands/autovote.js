@@ -43,7 +43,7 @@ module.exports = {
       if(args[0] == 'list') {
         var autovoteList = "";
         Object.keys(recurringVoters.users).forEach(voter => {
-          var currentVoter = client.users.get(voter);
+          var currentVoter = client.users.cache.get(voter);
           autovoteList += recurringVoters.users[voter] + ' - ' + currentVoter.tag + '\n';
         });
         if(autovoteList == "") return message.channel.send("There are no current autovoters for any list!");
