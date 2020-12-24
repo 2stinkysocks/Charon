@@ -148,6 +148,9 @@ client.on(`message`, async message => {
     if(command === "giveobols") {
         client.commands.get('giveobols').execute(message, args, obols, fs, Discord);
     }
+    if(command === "takeobols") {
+        client.commands.get('takeobols').execute(message, args, obols, fs, Discord);
+    }
 
 });
 client.login(process.env.BOT_TOKEN)
