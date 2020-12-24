@@ -24,7 +24,7 @@ module.exports = {
             sortable.sort(function(a, b) {
                 return b[1] - a[1];
             });
-            sortable = sortable.slice(9);
+            sortable = sortable.slice(0,10);
 
             var list = "";
             sortable.forEach((pair, i) => {
