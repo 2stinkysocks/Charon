@@ -214,6 +214,9 @@ client.on(`message`, async message => {
     if(command === "deletequestion") {
         client.commands.get('deletequestion').execute(message, triviaquestions, fs);
     }
+    if(command === "giftobols") {
+	client.commands.get('giftobols').execute(message, args, obols, fs, Discord);
+    }
 
 });
 client.login(process.env.BOT_TOKEN)
