@@ -12,6 +12,7 @@ const rsq = require(`./rsq.json`);
 const recurringVoters = require(`./recurringVoters.json`);
 const bannedAutoVoters = require(`./bannedAutoVoters.json`);
 const obols = require(`./obols.json`);
+const triviaquestions = require(`./triviaquestions.json`);
 
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
@@ -71,8 +72,64 @@ client.on(`guildMemberRemove`, member => {
   general.send(`**_${member.displayName} has left._**`)
 });
 
+let questionActive = false;
 client.on(`message`, async message => {
     if(message.author.bot) return;
+
+    //trivia
+    var triviarandom = Math.floor(Math.random()*14);
+    if(triviarandom == 0 && message.channel.name == "general" && !questionActive && message.channel.name == "general") { // MAKE IT SO THAT THIS CAN'T TRIGGER DURING A QUESTION
+        questionActive = true;
+        var questions = Object.keys(triviaquestions);
+        var answers = Object.values(triviaquestions);
+        let random = Math.floor(Math.random() * questions.length);
+        var question = questions[random];
+        var answer = answers[random];
+
+        let trivia = new Discord.MessageEmbed()
+            .setColor(`#4287F5`)
+            .setTitle(`Charon's Question:\n${question}`)
+            .setThumbnail(`https://i.imgur.com/NUZfL7i.png`)
+            .setDescription(`First to answer wins this Obol`);
+        message.channel.send(trivia);
+        const collector = message.channel.createMessageCollector(m => !m.author.bot, { time: 20000 });
+
+        var correctlyAnswered = null;        
+
+        collector.on('collect', msg => {
+            if(msg.content.toLowerCase() == answer.toLowerCase()) {
+                correctlyAnswered = msg.author;
+                collector.stop();
+            }
+        });
+        collector.on('end', collected => {
+            if(correctlyAnswered != null) {
+                obols[correctlyAnswered.id] == undefined ? obols[correctlyAnswered.id] = 1 : obols[correctlyAnswered.id] += 1;
+                fs.writeFile('./obols.json', JSON.stringify(obols), function (err) {
+                    if (err) return console.log(err);
+                });
+                let correctEmbed = new Discord.MessageEmbed()
+                    .setColor(`#4287F5`)
+                    .setTitle(`${correctlyAnswered.username} won the Obol!`)
+                    .setThumbnail(`https://i.imgur.com/NUZfL7i.png`)
+                    .setDescription(`*Charon has granted you an Obol*\n\n*You now have ${obols[correctlyAnswered.id]} Obols*`);
+                message.channel.send(correctEmbed);
+                questionActive = false;
+            } else {
+                obols[client.user.id] == undefined ? obols[client.user.id] = 1 : obols[client.user.id] += 1;
+                fs.writeFile('./obols.json', JSON.stringify(obols), function (err) {
+                    if (err) return console.log(err);
+                });
+                let incorrectEmbed = new Discord.MessageEmbed()
+                    .setColor(`#4287F5`)
+                    .setTitle(`I think I'll just put this Obol in my pocket`)
+                    .setThumbnail(`https://i.imgur.com/NUZfL7i.png`)
+                    .setDescription("*Charon keeps the Obol\n\nCharon has " + obols[client.user.id] + " " + (obols[client.user.id] == 1 ? "Obol*" : "Obols*"));
+                message.channel.send(incorrectEmbed);
+                questionActive = false;
+            }
+        });
+    }
 
     // autoresponses
     Object.keys(autoresponses).forEach(function(response){
@@ -150,6 +207,12 @@ client.on(`message`, async message => {
     }
     if(command === "takeobols") {
         client.commands.get('takeobols').execute(message, args, obols, fs, Discord);
+    }
+    if(command === "addquestion") {
+        client.commands.get('addquestion').execute(message, triviaquestions, fs, config);
+    }
+    if(command === "deletequestion") {
+        client.commands.get('deletequestion').execute(message, triviaquestions, fs);
     }
 
 });
