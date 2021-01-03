@@ -68,7 +68,7 @@ client.on(`guildMemberAdd`, member => {
   var actualMessage = config.welcomemsg.replace('{user}', member.toString());
   general.send(actualMessage);
   questionActive = true;
-  trivia.execute(client.guilds.cache.get('640692199557955587').channels.cache.get('640692199557955591'), triviaquestions, Discord, obols, fs, questionActive, client).then(() => {
+  trivia.execute(client.guilds.cache.get('640692199557955587').channels.cache.get('640692199557955591'), triviaquestions, Discord, obols, fs, client).then(() => {
         questionActive = false;
   });
 });
@@ -87,7 +87,7 @@ client.on(`message`, async message => {
     if((triviarandom == 0 && message.channel.name == "general" && !questionActive) || (message.author.id == '417439359868862465' && message.content == "triggertrivia" && message.channel.name == "general")) { // MAKE IT SO THAT THIS CAN'T TRIGGER DURING A QUESTION
         if(message.author.id == '417439359868862465' && message.content == "triggertrivia") setTimeout(function(){message.delete()}, 1000);
         questionActive = true;
-        trivia.execute(message.channel, triviaquestions, Discord, obols, fs, questionActive, client).then(() => {
+        trivia.execute(message.channel, triviaquestions, Discord, obols, fs, client).then(() => {
             questionActive = false;
         });
     }
