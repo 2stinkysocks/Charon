@@ -64,16 +64,17 @@ client.on(`guildDelete`, guild => {
 
 
 client.on(`guildMemberAdd`, member => {
-  var general = client.channels.find(channel => channel.name == "general");
+  var general = client.channels.cache.find(channel => channel.name == "general");
   var actualMessage = config.welcomemsg.replace('{user}', member.toString());
   general.send(actualMessage);
   questionActive = true;
-  trivia.execute(client.guilds.cache.get('640692199557955587').channels.cache.get('640692199557955591'), triviaquestions, Discord, obols, fs, questionActive, client);
-  questionActive = false;
+  trivia.execute(client.guilds.cache.get('640692199557955587').channels.cache.get('640692199557955591'), triviaquestions, Discord, obols, fs, questionActive, client).then(() => {
+        questionActive = false;
+  });
 });
 
 client.on(`guildMemberRemove`, member => {
-  var general = client.channels.find(channel => channel.name == "general");
+  var general = client.channels.cache.find(channel => channel.name == "general");
   general.send(`**_${member.displayName} has left._**`)
 });
 
@@ -85,8 +86,9 @@ client.on(`message`, async message => {
     var triviarandom = Math.floor(Math.random()*14);
     if(triviarandom == 0 && message.channel.name == "general" && !questionActive && message.channel.name == "general") { // MAKE IT SO THAT THIS CAN'T TRIGGER DURING A QUESTION
         questionActive = true;
-        trivia.execute(message.channel, triviaquestions, Discord, obols, fs, questionActive, client);
-        questionActive = false;
+        trivia.execute(message.channel, triviaquestions, Discord, obols, fs, questionActive, client).then(() => {
+            questionActive = false;
+        });
     }
 
     // autoresponses
