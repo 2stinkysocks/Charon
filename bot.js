@@ -33,7 +33,7 @@ client.on(`ready`, () => {
   client.user.setActivity(`you enlist! | -help`, { type : 'WATCHING'});
 
   // autovote
-  var c = cron.schedule('30 20 * * monday', () => {
+  cron.schedule('30 20 * * monday', () => {
     Object.keys(recurringVoters.users).forEach(value => {
         var guild = client.guilds.cache.get('640692199557955587');
         var listRole = guild.roles.cache.find(role => role.name === recurringVoters.users[value] + " list");
@@ -51,6 +51,11 @@ client.on(`ready`, () => {
            break;   
         }
     });
+  });
+  
+  //daily random obol
+  cron.schedule('30 20 * * *', () => {
+    client.commands.get('obolslottery').execute(null, client.guilds.cache.get('640692199557955587').channels.cache.find(channel => channel.name === "general"), obols, fs, client, Discord, true);
   });
 });
 
@@ -179,7 +184,7 @@ client.on(`message`, async message => {
 	    client.commands.get('giftobols').execute(message, args, obols, fs, Discord);
     }
     if(command === "obolslottery") {
-        client.commands.get('obolslottery').execute(message, obols, fs, client, Discord);
+        client.commands.get('obolslottery').execute(message, message.channel, obols, fs, client, Discord, false);
     }
 
 });
