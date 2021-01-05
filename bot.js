@@ -174,7 +174,7 @@ client.on(`message`, async message => {
     if(command === "takeobols") {
         client.commands.get('takeobols').execute(message, args, obols, fs, Discord);
     }
-    if(command === "addquestion") {
+    if(command === "addquestion" || command === "aq") {
         client.commands.get('addquestion').execute(message, triviaquestions, fs, config);
     }
     if(command === "deletequestion") {
