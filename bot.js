@@ -86,12 +86,10 @@ client.on(`guildMemberRemove`, member => {
 
 client.on(`message`, async message => {
     if(message.author.bot) return;
-    if(message.content.startsWith == config.prefix + "gamble") {
-        questionActive = true;
-    }
+    
     //trivia
     var triviarandom = Math.floor(Math.random()*14);
-    if((triviarandom == 0 && message.channel.name == "general" && !questionActive) || (message.author.id == '417439359868862465' && message.content == "triggertrivia" && message.channel.name == "general")) { // MAKE IT SO THAT THIS CAN'T TRIGGER DURING A QUESTION
+    if(((triviarandom == 0 && message.channel.name == "general" && !questionActive) || (message.author.id == '417439359868862465' && message.content == "triggertrivia" && message.channel.name == "general")) && !message.content.startsWith(config.prefix)) { // MAKE IT SO THAT THIS CAN'T TRIGGER DURING A QUESTION
         if(message.author.id == '417439359868862465' && message.content == "triggertrivia") setTimeout(function(){message.delete()}, 1000);
         questionActive = true;
         trivia.execute(message.channel, triviaquestions, Discord, obols, fs, client).then(() => {
