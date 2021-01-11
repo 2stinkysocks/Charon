@@ -13,7 +13,7 @@ module.exports = {
             var answer = "";
             var cancelled = false;
             collector.on('collect', msg => {
-                if(msg.content == "cancel") cancelled = true;
+                if(msg.content.toLowerCase() == "cancel") cancelled = true;
                 question = msg.content;
             });
 
@@ -22,7 +22,7 @@ module.exports = {
                     const collector = message.channel.createMessageCollector(m => !m.author.bot && m.author.id === message.author.id, {max: 1});
                     message.channel.send("Enter the answer (or type `cancel` to cancel): ");
                     collector.on('collect', msg => {
-                        if(msg.content == "cancel") cancelled = true;
+                        if(msg.content.toLowerCase() == "cancel") cancelled = true;
                         answer = msg.content;
                     });
 

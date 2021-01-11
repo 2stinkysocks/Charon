@@ -181,7 +181,7 @@ client.on(`message`, async message => {
         client.commands.get('deletequestion').execute(message, triviaquestions, fs);
     }
     if(command === "giftobols") {
-	    client.commands.get('giftobols').execute(message, args, obols, fs, Discord);
+	    client.commands.get('giftobols').execute(message, args, obols, fs, Discord, client);
     }
     if(command === "obolslottery") {
         client.commands.get('obolslottery').execute(message, message.channel, obols, fs, client, Discord, false);
