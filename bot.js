@@ -86,7 +86,9 @@ client.on(`guildMemberRemove`, member => {
 
 client.on(`message`, async message => {
     if(message.author.bot) return;
-
+    if(message.content.startsWith == config.prefix + "gamble") {
+        questionActive = true;
+    }
     //trivia
     var triviarandom = Math.floor(Math.random()*14);
     if((triviarandom == 0 && message.channel.name == "general" && !questionActive) || (message.author.id == '417439359868862465' && message.content == "triggertrivia" && message.channel.name == "general")) { // MAKE IT SO THAT THIS CAN'T TRIGGER DURING A QUESTION
@@ -187,7 +189,7 @@ client.on(`message`, async message => {
         client.commands.get('obolslottery').execute(message, message.channel, obols, fs, client, Discord, false);
     }
     if(command === "gamble") {
-        client.commands.get('gamble').execute(message, args, Discord, obols, fs, client);
+        client.commands.get('gamble').execute(message, args, Discord, obols, fs, client).then(() => {questionActive = false});
     }
 
 });
