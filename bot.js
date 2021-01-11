@@ -186,6 +186,9 @@ client.on(`message`, async message => {
     if(command === "obolslottery") {
         client.commands.get('obolslottery').execute(message, message.channel, obols, fs, client, Discord, false);
     }
+    if(command === "gamble") {
+        client.commands.get('gamble').execute(message, args, Discord, obols, fs, client);
+    }
 
 });
 client.login(process.env.BOT_TOKEN)
