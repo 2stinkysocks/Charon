@@ -14,7 +14,7 @@ module.exports = {
                 .setTitle(`Charon's Question:\n${question}`)
                 .setThumbnail(`https://i.imgur.com/NUZfL7i.png`)
                 .setDescription(`First to answer wins this Obol`);
-            channel.send(trivia);
+            var questionMsg = channel.send(trivia);
             const collector = channel.createMessageCollector(m => !m.author.bot, { time: 20000 });
 
             var correctlyAnswered = null;        
@@ -47,7 +47,9 @@ module.exports = {
                         .setTitle(`I think I'll just put this Obol in my pocket`)
                         .setThumbnail(`https://i.imgur.com/NUZfL7i.png`)
                         .setDescription("*Charon keeps the Obol\n\nCharon has " + obols[client.user.id] + " " + (obols[client.user.id] == 1 ? "Obol*" : "Obols*"));
-                    channel.send(incorrectEmbed);
+                    var incorrectMsg = channel.send(incorrectEmbed);
+                    setTimeout(function(){questionMsg.delete()}, 2000);
+                    setTimeout(function(){incorrectMsg.delete()}, 5000);
                 }
                 resolve(null);
             });
