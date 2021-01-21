@@ -1,4 +1,3 @@
-const { execute } = require("./bomber");
 
 module.exports = {
     name: 'autoresponse',
@@ -46,7 +45,7 @@ module.exports = {
       if(args[0] === `list`) {
         var responseList = '';
         Object.keys(autoresponses).forEach(function(response) {
-          var responsecreator = client.users.get(autoresponses[response].creatorid);
+          var responsecreator = client.users.cache.get(autoresponses[response].creatorid);
           responseList += response + ' - ' + responsecreator.tag;
           if(autoresponses[response].wildcard) responseList += ` *(wildcard)* `;
           responseList += `\n`;
