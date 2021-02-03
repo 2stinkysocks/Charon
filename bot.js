@@ -5,6 +5,7 @@ const cron = require('node-cron');
 const timestring = require('timestring'); //timestring(str, 'ms') turns 1h30m to ms
 const Discord = require(`discord.js`);
 const client = new Discord.Client();
+const pms = require('pretty-ms');
 
 const config = require(`./config.json`);
 const croids = require(`./croids.json`);

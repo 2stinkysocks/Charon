@@ -9,6 +9,7 @@
     "forever": "^3.0.4",
     "fs": "0.0.1-security",
     "node-cron": "^2.0.3",
+    "pretty-ms": "^7.0.1",
     "timestring": "^6.0.0"
   },
   "scripts": {
