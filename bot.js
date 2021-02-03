@@ -15,6 +15,8 @@ const bannedAutoVoters = require(`./bannedAutoVoters.json`);
 const obols = require(`./obols.json`);
 const triviaquestions = require(`./triviaquestions.json`);
 const trivia = require(`./trivia`);
+const afk = require(`./afk.json`);
+const afkhandler = require('./afkhandler');
 
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
@@ -96,6 +98,9 @@ client.on(`message`, async message => {
             questionActive = false;
         });
     }
+
+    //afk
+    afkhandler.execute(message, afk, pms, fs, config);
 
     // autoresponses
     Object.keys(autoresponses).forEach(function(response){
@@ -212,6 +217,10 @@ client.on(`message`, async message => {
         });      
         message.channel.send("Done!");
     }
+    if(command === "afk") {
+        client.commands.get('afk').execute(message, args, fs, afk);
+    }
+    
 
 });
 client.login(process.env.BOT_TOKEN)

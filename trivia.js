@@ -47,11 +47,12 @@ module.exports = {
                         .setTitle(`I think I'll just put this Obol in my pocket`)
                         .setThumbnail(`https://i.imgur.com/NUZfL7i.png`)
                         .setDescription("*Charon keeps the Obol\n\nCharon has " + obols[client.user.id] + " " + (obols[client.user.id] == 1 ? "Obol*" : "Obols*"));
-                    channel.send(incorrectEmbed).then(msg => {
-                        msg.delete({timeout: 10000})
-                    });
-                    questionMsg.then(msg => msg.delete({timeout: 10000}));
-                    collected.forEach(collect => collect.delete({timeout: 1000}))
+                    channel.send(incorrectEmbed)
+                        //.then(msg => {
+                    //     msg.delete({timeout: 10000})
+                    // });
+                    // questionMsg.then(msg => msg.delete({timeout: 10000}));
+                    // collected.forEach(collect => collect.delete({timeout: 1000}))
                 }
                 resolve(null);
             });
