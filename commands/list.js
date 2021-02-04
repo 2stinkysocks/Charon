@@ -17,7 +17,7 @@ module.exports = {
             if(message.guild.roles.cache.find(role => role.name.startsWith(args[0].toLowerCase())) != null) {
               message.channel.send({embed: {
                 color:4360181,
-                title:`Members in ${message.guild.roles.cache.find(role => role.name.startsWith(args[0].toLowerCase()))}`,
+                title:`Members in ${message.guild.roles.cache.find(role => role.name.startsWith(args[0].toLowerCase())).name}`,
                 description: message.guild.roles.cache.find(role => role.name.startsWith(args[0].toLowerCase())).members.map(m=>m.user.tag).join('\n')
               }});
               return;
