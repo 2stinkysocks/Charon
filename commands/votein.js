@@ -49,7 +49,7 @@ module.exports = {
         message.member.roles.add(role).catch(console.error);
         break;
     }
-    message.channel.send("**Note:** Lists that aren't displayed have 0 members.");
+    message.channel.send("**Note:** Lists that aren't displayed currently have 0 members.");
     if(message.guild.roles.cache.find(role => role.name == `vc list`).members.size > 0) message.channel.send({
       embed: {
         color: 4360181,
