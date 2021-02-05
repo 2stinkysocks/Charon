@@ -14,11 +14,11 @@ module.exports = {
             return;
           }
           if(args[0] != null) {
-            if(message.guild.roles.cache.find(role => role.name.toLowerCase() == args[0].toLowerCase()) != null) {
+            if(message.guild.roles.cache.find(role => role.name.toLowerCase() == args.join(' ').toLowerCase()) != null) {
               message.channel.send({embed: {
                 color:4360181,
-                title:`Members in ${message.guild.roles.cache.find(role => role.name.toLowerCase() == args[0].toLowerCase()).name}`,
-                description: message.guild.roles.cache.find(role => role.name.toLowerCase() == args[0].toLowerCase()).members.map(m=>m.user.tag).join('\n')
+                title:`Members in ${message.guild.roles.cache.find(role => role.name.toLowerCase() == args.join(' ').toLowerCase()).name}`,
+                description: message.guild.roles.cache.find(role => role.name.toLowerCase() == args.join(' ').toLowerCase()).members.map(m=>m.user.tag).join('\n')
               }});
               return;
             } else {
