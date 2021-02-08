@@ -57,6 +57,7 @@ module.exports = {
 
       if(args[0] == "enable" || args[0] == "enabled") {
         if(recurringVoters.users[message.author.id] != null) return message.channel.send(`You are already set to vote in automatically to the ${recurringVoters.users[message.author.id]} list!`);
+        if(args[1] == null) return message.channel.send("You have to specify a list to vote in to! (vc, sos, rsvd, void, allies, fill)");
         var list = args[1].toLowerCase();
         if(list != `vc` && list != `sos` && list != `rsvd` && list != `void` && list != `allies` && list != `fill`) return message.channel.send(`${args[1]} is not a valid list! Valid lists are vc, sos, rsvd, void, allies, fill`);
         recurringVoters.users[message.author.id] = args[1].toLowerCase();
