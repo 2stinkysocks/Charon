@@ -219,7 +219,7 @@ client.on(`message`, async message => {
         message.channel.send("Done!");
     }
     if(command === "afk") {
-        client.commands.get('afk').execute(message, args, fs, afk);
+        client.commands.get('afk').execute(message, args, fs, afk, pms);
     }
     
 
