@@ -139,13 +139,13 @@ client.on(`message`, async message => {
         client.commands.get('autoresponse').execute(message, args, autoresponses, config, fs, client);
     }
     if(command === "votein") {
-        client.commands.get('votein').execute(message, args);
+        client.commands.get('votein').execute(message, args, Discord);
     }
     if(command === "voteout") {
-        client.commands.get('voteout').execute(message, args, client.commands.get('votein').oneListOnly);
+        client.commands.get('voteout').execute(message, args, Discord);
     }
     if(command === "list") {
-        client.commands.get('list').execute(message, args, client.commands.get('votein').oneListOnly);
+        client.commands.get('list').execute(message, args, Discord);
     }
     if(command === "croid") {
         client.commands.get('croid').execute(message, args, croids, timestring, fs);
