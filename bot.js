@@ -75,10 +75,6 @@ client.on(`guildMemberAdd`, member => {
   var general = client.channels.cache.find(channel => channel.name == "general");
   var actualMessage = config.welcomemsg.replace('{user}', member.toString());
   general.send(actualMessage);
-  questionActive = true;
-  trivia.execute(client.guilds.cache.get('640692199557955587').channels.cache.get('640692199557955591'), triviaquestions, Discord, obols, fs, client).then(() => {
-        questionActive = false;
-  });
 });
 
 client.on(`guildMemberRemove`, member => {
