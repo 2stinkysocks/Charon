@@ -30,12 +30,6 @@ client.on('error', error => {
   console.error('The WebSocket encountered an error:', error);
 });
 
-client.on('guildCreate', guild => {
-    config[guild.id].prefix = '-';
-    fs.writeFile('./config.json', JSON.stringify(config), function (err) {
-        if (err) return console.log(err);
-    });
-});
 
 client.on(`ready`, () => {
   console.log(`Bot has started.`); 
@@ -70,16 +64,24 @@ client.on(`ready`, () => {
 
 client.on(`guildCreate`, guild => {
   console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
+  config[guild.id].prefix = '-';
+    fs.writeFile('./config.json', JSON.stringify(config), function (err) {
+        if (err) return console.log(err);
+    });
 });
 
 client.on(`guildDelete`, guild => {
   console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
+  delete config[guild.id];
+    fs.writeFile('./config.json', JSON.stringify(config), function (err) {
+        if (err) return console.log(err);
+    });
 });
 
 
 client.on(`guildMemberAdd`, member => {
   var general = client.channels.cache.find(channel => channel.name == "general");
-  var actualMessage = config.welcomemsg.replace('{user}', member.toString());
+  var actualMessage = config[member.guild.id].welcomemsg.replace('{user}', member.toString());
   general.send(actualMessage);
 });
 
