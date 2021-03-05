@@ -3,7 +3,7 @@ module.exports = {
     name: 'addquestion',
     description: "Add a trivia question",
     execute(message, triviaquestions, fs, config){
-        if(message.author.id != '456225381406605313' && message.author.id != '417439359868862465') return message.channel.send(`You can't add a question right now! Purchase the ability to add one with ${config.prefix}shop`);
+        if(message.author.id != '456225381406605313' && message.author.id != '417439359868862465') return message.channel.send(`You can't add a question right now! Purchase the ability to add one with ${config[message.guild.id].prefix}shop`);
 
         if(message.author.id == '456225381406605313' || message.author.id == '417439359868862465') {
             const collector = message.channel.createMessageCollector(m => !m.author.bot && m.author.id === message.author.id, {max: 1});

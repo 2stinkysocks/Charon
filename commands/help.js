@@ -6,46 +6,46 @@ module.exports = {
             message.channel.send({embed: {
               color: 4360181,
               title: `Charon Help`,
-              description: `**To view more information on a command, type ${config.prefix}help (command)**\n\n`,
+              description: `**To view more information on a command, type ${config[message.guild.id].prefix}help (command)**\n\n`,
               fields: [
                 {
-                  name: `${config.prefix}votein`,
+                  name: `${config[message.guild.id].prefix}votein`,
                   value: `Vote into one of four white star lists`,
                 },
                 {
-                  name: `${config.prefix}voteout`,
+                  name: `${config[message.guild.id].prefix}voteout`,
                   value: `Vote out of all white star lists`,
                 },
                 {
-                  name: `${config.prefix}list`,
+                  name: `${config[message.guild.id].prefix}list`,
                   value: `View all white star lists`,
                 },
                 {
-                  name: `${config.prefix}ping`,
+                  name: `${config[message.guild.id].prefix}ping`,
                   value: `Check the bot's ping and api latency`,
                 },
                 {
-                  name: `${config.prefix}croid`,
+                  name: `${config[message.guild.id].prefix}croid`,
                   value: `Track your Rich Asteroid Field`,
                 },
                 {
-                  name: `${config.prefix}autoresponse`,
+                  name: `${config[message.guild.id].prefix}autoresponse`,
                   value: `Create, delete, and list autoresponses!`
                 },
                 {
-                  name: `${config.prefix}joinmessage`,
+                  name: `${config[message.guild.id].prefix}joinmessage`,
                   value: `Edit the welcome message for new members! (Officer only)`
                 },
                 {
-                  name: `${config.prefix}bomber`,
+                  name: `${config[message.guild.id].prefix}bomber`,
                   value: `Add someone as a Stealth Bomber (Eve Commander Only)`
                 },
                 {
-                  name: `${config.prefix}miner`,
+                  name: `${config[message.guild.id].prefix}miner`,
                   value: `Add someone as an Eve Miner (Eve Commander Only)`
                 },
                 {
-                  name: `${config.prefix}prefix`,
+                  name: `${config[message.guild.id].prefix}prefix`,
                   value: `Modify the server prefix (Officer only)`
                 }
               ],
@@ -60,7 +60,7 @@ module.exports = {
               message.channel.send({embed: {
                 color:4360181,
                 title: `Votein`,
-                description: `Vote into any of four whitestar lists: vc, sos, allies, and fill.\n\nUse **${config.prefix}votein (vc, sos, allies, fill)** to vote in, and show the current list.`
+                description: `Vote into any of four whitestar lists: vc, sos, allies, and fill.\n\nUse **${config[message.guild.id].prefix}votein (vc, sos, allies, fill)** to vote in, and show the current list.`
               }})
             break;
             case "voteout":
@@ -74,7 +74,7 @@ module.exports = {
               message.channel.send({embed: {
                 color:4360181,
                 title: "List",
-                description: `Shows the vc, sos, rsvd, allies, and fill whitestar lists.\n\nUse **${config.prefix}list (vc, sos, rsvd, allies, fill, vc-ws, sos-ws, rsvd-ws, allies-ws, bomber, miner)** to check each corresponding list.\n\nYou can also use **${config.prefix}list count** to check how many members are in each list.`
+                description: `Shows the vc, sos, rsvd, allies, and fill whitestar lists.\n\nUse **${config[message.guild.id].prefix}list (vc, sos, rsvd, allies, fill, vc-ws, sos-ws, rsvd-ws, allies-ws, bomber, miner)** to check each corresponding list.\n\nYou can also use **${config[message.guild.id].prefix}list count** to check how many members are in each list.`
               }})
             break;
             case "ping":
@@ -88,35 +88,35 @@ module.exports = {
               message.channel.send({embed: {
                 color:4360181,
                 title: "Croid",
-                description: `Use **${config.prefix}croid** to check your current croid cooldown.\n\nUse **${config.prefix}croid mined (time since your croid was mined, ex: 1h 30m)** to set when your croid was mined.\n\n**This feature is a work in progress, expect updates and changes soon.**`
+                description: `Use **${config[message.guild.id].prefix}croid** to check your current croid cooldown.\n\nUse **${config[message.guild.id].prefix}croid mined (time since your croid was mined, ex: 1h 30m)** to set when your croid was mined.\n\n**This feature is a work in progress, expect updates and changes soon.**`
               }})
             break;
             case "autoresponse":
               message.channel.send({embed: {
                 color:4360181,
                 title: "Autoresponse",
-                description: `Use **${config.prefix}autoresponse create (trigger) (response)** to create an autoresponse or **${config.prefix}autoresponse create wildcard (trigger) (response)** to create one that can be in context (only one per person). \nUse **${config.prefix}autoresponse delete (trigger)** to delete your autoresponse.\nUse **${config.prefix}autoresponse list** to view all autoresponses.\n\n\n**${config.prefix}ar (create, delete, list)** is an alias.`,
+                description: `Use **${config[message.guild.id].prefix}autoresponse create (trigger) (response)** to create an autoresponse or **${config[message.guild.id].prefix}autoresponse create wildcard (trigger) (response)** to create one that can be in context (only one per person). \nUse **${config[message.guild.id].prefix}autoresponse delete (trigger)** to delete your autoresponse.\nUse **${config[message.guild.id].prefix}autoresponse list** to view all autoresponses.\n\n\n**${config[message.guild.id].prefix}ar (create, delete, list)** is an alias.`,
               }})
             break;
             case "joinmessage":
               message.channel.send({embed: {
                 color:4360181,
                 title: "joinmessage",
-                description: `Use **${config.prefix}joinmessage (message)** to modify the join message. {user} will be replaced with the user who joined.`,
+                description: `Use **${config[message.guild.id].prefix}joinmessage (message)** to modify the join message. {user} will be replaced with the user who joined.`,
               }})
             break;
             case "bomber":
                 message.channel.send({embed: {
                     color:4360181,
                     title: "bomber",
-                    description: `Use **${config.prefix}bomber <add/remove> (username)** to add/remove a user as a stealth bomber.`,
+                    description: `Use **${config[message.guild.id].prefix}bomber <add/remove> (username)** to add/remove a user as a stealth bomber.`,
                   }})
             break;
             case "prefix":
               message.channel.send({embed: {
                 color:4360181,
                 title: "prefix",
-                description: `Use **${config.prefix}prefix (new prefix)** to modify the global prefix.`,
+                description: `Use **${config[message.guild.id].prefix}prefix (new prefix)** to modify the global prefix.`,
               }})
             break;
             default:

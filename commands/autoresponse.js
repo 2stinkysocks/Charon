@@ -13,7 +13,7 @@ module.exports = {
           }
         })
         if(hasResponseAlready) return;
-        if(args[1] == null) return message.channel.send(`You need to specify a trigger command or wildcard! (doesn't need to begin with ${config.prefix}, ex: villain)`);
+        if(args[1] == null) return message.channel.send(`You need to specify a trigger command or wildcard! (doesn't need to begin with ${config[message.guild.id].prefix}, ex: villain)`);
         if(args[2] == null && args[1] != `wildcard`) return message.channel.send(`You need to specify a response! (ex: You're almost as bad as villain!)`);
         if(args[2] == null && args[1] == `wildcard`) return message.channel.send(`You need to specify a trigger command! (ex: villain)`);
         if(args[1] == `wildcard`) {

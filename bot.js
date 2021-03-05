@@ -8,7 +8,6 @@ const client = new Discord.Client();
 const pms = require('pretty-ms');
 
 const config = require(`./config.json`);
-const croids = require(`./croids.json`);
 const autoresponses = require(`./autoresponses.json`);
 const rsq = require(`./rsq.json`);
 const recurringVoters = require(`./recurringVoters.json`);
@@ -29,6 +28,13 @@ for(const file of commandFiles){
 // handles error that causes shutdown on wifi outage
 client.on('error', error => {
   console.error('The WebSocket encountered an error:', error);
+});
+
+client.on('guildCreate', guild => {
+    config[guild.id].prefix = '-';
+    fs.writeFile('./config.json', JSON.stringify(config), function (err) {
+        if (err) return console.log(err);
+    });
 });
 
 client.on(`ready`, () => {
@@ -88,7 +94,7 @@ client.on(`message`, async message => {
     
     //trivia
     var triviarandom = Math.floor(Math.random()*14);
-    if(((triviarandom == 0 && message.channel.name == "general" && !questionActive) || (message.author.id == '417439359868862465' && message.content == "triggertrivia" && message.channel.name == "general")) && !message.content.startsWith(config.prefix)) { // MAKE IT SO THAT THIS CAN'T TRIGGER DURING A QUESTION
+    if(((triviarandom == 0 && message.channel.name == "general" && !questionActive) || (message.author.id == '417439359868862465' && message.content == "triggertrivia" && message.channel.name == "general")) && !message.content.startsWith(config[message.guild.id].prefix)) { // MAKE IT SO THAT THIS CAN'T TRIGGER DURING A QUESTION
         if(message.author.id == '417439359868862465' && message.content == "triggertrivia") setTimeout(function(){message.delete()}, 1000);
         questionActive = true;
         trivia.execute(message.channel, triviaquestions, Discord, obols, fs, client).then(() => {
@@ -102,7 +108,7 @@ client.on(`message`, async message => {
     // autoresponses
     Object.keys(autoresponses).forEach(function(response){
         if(autoresponses[response].wildcard) {
-        if(message.content.includes(response) && !message.content.startsWith(`${config.prefix}ar delete`)) {
+        if(message.content.includes(response) && !message.content.startsWith(`${config[message.guild.id].prefix}ar delete`)) {
             message.channel.send(autoresponses[response].response + " ");
             return;
         }
@@ -115,8 +121,8 @@ client.on(`message`, async message => {
         message.channel.send("I can't answer that! I'm not an AI..\n\n..yet")
     }
 
-    if(message.content.indexOf(config.prefix) !== 0) return;
-    const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+    if(message.content.indexOf(config[message.guild.id].prefix) !== 0) return;
+    const args = message.content.slice(config[message.guild.id].prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
     if(command === "ping") {
@@ -124,9 +130,6 @@ client.on(`message`, async message => {
     }
     if(command === "joinmessage") {
         client.commands.get('joinmessage').execute(message, args, config, fs);
-    }
-    if(command === "bomber") {
-        client.commands.get('bomber').execute(message, args);
     }
     if(command === "prefix") {
         client.commands.get('prefix').execute(message, args, config, fs);
@@ -143,20 +146,11 @@ client.on(`message`, async message => {
     if(command === "list") {
         client.commands.get('list').execute(message, args, Discord);
     }
-    if(command === "croid") {
-        client.commands.get('croid').execute(message, args, croids, timestring, fs);
-    }
     if(command === "help") {
         client.commands.get('help').execute(message, args, config);
     }
     if(command === "sendembed") {
         client.commands.get('sendembed').execute(message, args);
-    }
-    if(command === "miner") {
-        client.commands.get('miner').execute(message, args);
-    }
-    if(command === "security") {
-        client.commands.get('security').execute(message, args);
     }
     if(command === "autovote") {
         client.commands.get('autovote').execute(message, args, fs, recurringVoters, bannedAutoVoters, client);
