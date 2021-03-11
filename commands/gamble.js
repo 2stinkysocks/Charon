@@ -20,7 +20,8 @@ module.exports = {
                 .setDescription(`*“You wish to gamble away your hard earned Obols against me? Very well then, I accept.”*\n\nCharon attempts to match your bet of ${args[0]}.\n\n*“It seems I must have dropped some Obols...”*\n\nYou and Charon must have enough Obols to gamble.\n\nCome back later or reduce your bet size.`);
             if(parseInt(args[0]) > obols[client.user.id]) return message.channel.send(charonNotEnoughObols);
             if(isNaN(args[0])) return message.channel.send("\"" + args[0] + "\" is not a number!");
-            var charonMove = Math.floor(Math.random()*2) == 0 ? "rock" : Math.floor(Math.random()*2) == 0 ? "paper" : "scissors";
+            var random = Math.floor(Math.random()*2);
+            var charonMove = random == 0 ? "rock" : random == 1 ? "paper" : "scissors";
             var playerMove = "";
             const initialEmbed = new Discord.MessageEmbed()
                 .setColor(`#4287F5`)
