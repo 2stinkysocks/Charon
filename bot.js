@@ -96,7 +96,7 @@ client.on(`message`, message => {
     
     //trivia
     var triviarandom = Math.floor(Math.random()*14);
-    if(((triviarandom == 0 && message.channel.name == "general" && !questionActive) || (message.author.id == '417439359868862465' && message.content == "triggertrivia" && message.channel.name == "general")) && !message.content.startsWith(config[message.guild.id].prefix)) { // MAKE IT SO THAT THIS CAN'T TRIGGER DURING A QUESTION
+    if(((triviarandom == -1 && message.channel.name == "general" && !questionActive) || (message.author.id == '417439359868862465' && message.content == "triggertrivia" && message.channel.name == "general")) && !message.content.startsWith(config[message.guild.id].prefix)) { // MAKE IT SO THAT THIS CAN'T TRIGGER DURING A QUESTION
         if(message.author.id == '417439359868862465' && message.content == "triggertrivia") setTimeout(function(){message.delete()}, 1000);
         questionActive = true;
         trivia.execute(message.channel, triviaquestions, Discord, obols, fs, client).then(() => {
