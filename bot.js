@@ -57,9 +57,9 @@ client.on(`ready`, () => {
   });
   
   //daily random obol
-  cron.schedule('30 20 * * *', () => {
-    client.commands.get('obolslottery').execute(null, client.guilds.cache.get('640692199557955587').channels.cache.find(channel => channel.name === "general"), obols, fs, client, Discord, true);
-  });
+//   cron.schedule('30 20 * * *', () => {
+//     client.commands.get('obolslottery').execute(null, client.guilds.cache.get('640692199557955587').channels.cache.find(channel => channel.name === "general"), obols, fs, client, Discord, true);
+//   });
 });
 
 client.on(`guildCreate`, guild => {
@@ -96,13 +96,13 @@ client.on(`message`, message => {
     
     //trivia
     var triviarandom = Math.floor(Math.random()*14);
-    if(((triviarandom == -1 && message.channel.name == "general" && !questionActive) || (message.author.id == '417439359868862465' && message.content == "triggertrivia" && message.channel.name == "general")) && !message.content.startsWith(config[message.guild.id].prefix)) { // MAKE IT SO THAT THIS CAN'T TRIGGER DURING A QUESTION
-        if(message.author.id == '417439359868862465' && message.content == "triggertrivia") setTimeout(function(){message.delete()}, 1000);
-        questionActive = true;
-        trivia.execute(message.channel, triviaquestions, Discord, obols, fs, client).then(() => {
-            questionActive = false;
-        });
-    }
+    // if(((triviarandom == 0 && message.channel.name == "general" && !questionActive) || (message.author.id == '417439359868862465' && message.content == "triggertrivia" && message.channel.name == "general")) && !message.content.startsWith(config[message.guild.id].prefix)) { // MAKE IT SO THAT THIS CAN'T TRIGGER DURING A QUESTION
+    //     if(message.author.id == '417439359868862465' && message.content == "triggertrivia") setTimeout(function(){message.delete()}, 1000);
+    //     questionActive = true;
+    //     trivia.execute(message.channel, triviaquestions, Discord, obols, fs, client).then(() => {
+    //         questionActive = false;
+    //     });
+    // }
 
     //afk
     afkhandler.execute(message, afk, pms, fs, config);
