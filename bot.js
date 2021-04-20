@@ -104,6 +104,25 @@ client.on(`message`, message => {
     //     });
     // }
 
+    // imagechannels
+    let memes = client.channels.cache.get('640710843771650068');
+    let imageChannels = new Array();
+    imageChannels.push(memes);
+    
+    imageChannels.forEach(channel => {
+        if(message.channel.id == channel.id) {            
+            if(message.attachments.size == 0 && !(message.content.includes('https://') || message.content.includes('http://'))) {
+                message.delete({timeout: 500});
+                message.channel.send(
+                    new Discord.MessageEmbed()
+                    .setColor('#FF0000')
+                    .setTitle('This is an image-only channel!')
+                    .setDescription('```\nOnly messages with attachments or embedded links are allowed!\n```')
+                ).then(msg => {msg.delete({timeout:7000})});
+            }
+        }
+    })
+
     //afk
     afkhandler.execute(message, afk, pms, fs, config);
 
