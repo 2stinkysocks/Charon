@@ -118,7 +118,7 @@ client.on(`message`, message => {
                 message.channel.send(
                     new Discord.MessageEmbed()
                     .setColor('#FF0000')
-                    .setTitle('This is an image-only channel!')
+                    .setTitle('This is a media-only channel!')
                     .setDescription('```\nOnly messages with attachments or embedded links are allowed!\n```')
                 ).then(msg => {msg.delete({timeout:7000})});
             }
