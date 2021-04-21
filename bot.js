@@ -80,6 +80,7 @@ client.on(`guildDelete`, guild => {
 
 
 client.on(`guildMemberAdd`, member => {
+  if(member.user.bot) return;
   var general = client.channels.cache.find(channel => channel.name == "general");
   var actualMessage = config[member.guild.id].welcomemsg.replace('{user}', member.toString());
   general.send(actualMessage);
