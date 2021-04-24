@@ -108,9 +108,11 @@ client.on(`message`, message => {
     // imagechannels
     let memes = client.channels.cache.get('640710843771650068');
     let jukebox = client.channels.cache.get('834217783495098378');
+    let vanity = client.channels.cache.get('778401280485359676');
     let imageChannels = new Array();
     imageChannels.push(memes);
     imageChannels.push(jukebox);
+    imageChannels.push(vanity);
     
     imageChannels.forEach(channel => {
         if(message.channel.id == channel.id) {            
