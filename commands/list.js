@@ -7,10 +7,9 @@ module.exports = {
             let countSOS = message.guild.roles.cache.find(role => role.name == `sos list`).members.size;
             let countRSVD = message.guild.roles.cache.find(role => role.name == `rsvd list`).members.size;
             let countAllies = message.guild.roles.cache.find(role => role.name == `allies list`).members.size;
-            let countVoid = message.guild.roles.cache.find(role => role.name == `void list`).members.size;
             let countFill = message.guild.roles.cache.find(role => role.name == `fill list`).members.size;
-            let countTotal = countVc + countSOS + countRSVD + countAllies + countVoid + countFill;
-            message.channel.send(`**Votein counts:**\n\nVc: ${countVc}\nSOS: ${countSOS}\nRSVD: ${countRSVD}\nVoid: ${countVoid}\nAllies: ${countAllies}\nFill: ${countFill}\n\nTotal: ${countTotal}`);
+            let countTotal = countVc + countSOS + countRSVD + countAllies + countFill;
+            message.channel.send(`**Votein counts:**\n\nVc: ${countVc}\nSOS: ${countSOS}\nRSVD: ${countRSVD}\nAllies: ${countAllies}\nFill: ${countFill}\n\nTotal: ${countTotal}`);
             return;
           }
           if(args[0] != null) {
@@ -63,17 +62,6 @@ module.exports = {
                   }
                 })
               listEmbed.addField(`RSVD List`, `>>> ${listString}`)
-            }
-            if(message.guild.roles.cache.find(role => role.name == `void list`).members.size > 0) {
-              var listString = "";
-                message.guild.roles.cache.find(role => role.name == `void list`).members.forEach(member => {
-                  if(member.id == message.author.id) {
-                    listString += "**__" + member.user.tag + "__**\n";
-                  } else {
-                    listString += member.user.tag + "\n";
-                  }
-                })
-              listEmbed.addField(`Void List`, `>>> ${listString}`)
             }
             if(message.guild.roles.cache.find(role => role.name == `allies list`).members.size > 0) {
               var listString = "";

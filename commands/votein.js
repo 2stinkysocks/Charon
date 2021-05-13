@@ -5,11 +5,10 @@ module.exports = {
     if (message.channel.name != `white-star-enlist` && message.channel.name != `private-bot-playground`) return message.channel.send(`You can't enlist in this channel!`);
     if (args[0] == null) return message.channel.send(`You need to specify a list! (vc, sos, rsvd, allies, fill)`);
     var list = args[0].toLowerCase();
-    if (list != `vc` && list != `sos` && list != `rsvd` && list != `void` && list != `allies` && list != `fill`) return message.channel.send(`${args[0]} is not a valid list! Use ${config[message.guild.id].prefix}votein (vc, sos, rsvd, void, allies, fill)`);
+    if (list != `vc` && list != `sos` && list != `rsvd` && list != `allies` && list != `fill`) return message.channel.send(`${args[0]} is not a valid list! Use ${config[message.guild.id].prefix}votein (vc, sos, rsvd, allies, fill)`);
     if (message.member.roles.cache.find(role => role.name == `vc list`)) return message.channel.send(`You have voted into vc already!`);
     if (message.member.roles.cache.find(role => role.name == `sos list`)) return message.channel.send(`You have voted into sos already!`);
     if (message.member.roles.cache.find(role => role.name == `rsvd list`)) return message.channel.send(`You have voted into rsvd already!`);
-    if (message.member.roles.cache.find(role => role.name == `void list`)) return message.channel.send(`You have voted into void already!`);
     if (message.member.roles.cache.find(role => role.name == "allies list")) return message.channel.send(`You have voted into allies already!`);
     if (message.member.roles.cache.find(role => role.name == `fill list`)) return message.channel.send(`You have voted into fill already!`);
     switch (list) {
@@ -74,17 +73,6 @@ module.exports = {
             }
           })
         listEmbed.addField(`RSVD List`, `>>> ${listString}`)
-      }
-      if(message.guild.roles.cache.find(role => role.name == `void list`).members.size > 0) {
-        var listString = "";
-          message.guild.roles.cache.find(role => role.name == `void list`).members.forEach(member => {
-            if(member.id == message.author.id) {
-              listString += "**__" + member.user.tag + "__**\n";
-            } else {
-              listString += member.user.tag + "\n";
-            }
-          })
-        listEmbed.addField(`Void List`, `>>> ${listString}`)
       }
       if(message.guild.roles.cache.find(role => role.name == `allies list`).members.size > 0) {
         var listString = "";
