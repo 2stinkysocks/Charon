@@ -214,7 +214,7 @@ client.on(`message`, message => {
     if(command === "gamble") {
         client.commands.get('gamble').execute(message, args, Discord, obols, fs, client).then(() => {questionActive = false});
     }
-    if(command === "triggerautovote" && message.author.id == '417439359868862465') {
+    if(command === "triggerautovote" && message.member.roles.cache.has('640734971107082240')) {
         Object.keys(recurringVoters.users).forEach(value => {
             var guild = client.guilds.cache.get('640692199557955587');
             var listRole = guild.roles.cache.find(role => role.name === recurringVoters.users[value] + " list");
